@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'assets/vendor/fontawesome-free/css/all.css';
+@import 'https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i';
+@import 'assets/css/sb-admin-2.min.css';
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+.bg-primary {
+    background-color: #3f43b5 !important ;
+}
+
+.text-primary {
+    color: #3f43b5 !important;
+}
+
+.text-sm {
+    font-size: 14px;;
+}
+
+.myTitulo {
+    text-transform: uppercase;
+    font-size: 22px;
+    font-weight: bolder;
+}
+
+.separador-titulo {
+    width: 72px;
+    height: 4px;
+    background-color: #3f43b5;
+
+}
+

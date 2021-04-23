@@ -1,0 +1,56 @@
+<div class="container-fluid">
+  <div class="d-flex mt-4">
+    <div class="col-8 mr-3">
+      <app-header-simulacao
+        [nomeMetodo]="nomeMetodo"
+        [descricaoMetodo]="descricaoMetodo"
+      >
+      </app-header-simulacao>
+
+      <div class="text-center">
+        <div class="banner_Img">
+          <!-- <img
+              class="px-3 px-sm-4 mt-3 mb-4"
+              style="width: 25rem"
+              src="assets/img/undraw_Logic_re_nyb4.svg"
+              alt=""
+            /> -->
+        </div>
+        <p>Ainda não há nada aqui</p>
+      </div>
+    </div>
+
+    <div class="col-4">
+      <app-collapse-card-objetivo> </app-collapse-card-objetivo>
+
+      <div *ngIf="true" class="card text-dark shadow mb-4">
+        <!-- Card Header - Accordion -->
+        <a
+          href="#dicas"
+          class="d-block card-header py-3"
+          data-toggle="collapse"
+          role="button"
+          aria-expanded="true"
+          aria-controls="dicas"
+        >
+          <h6 class="m-0 font-weight-bold text-primary">Dicas</h6>
+        </a>
+        <!-- Card Content - Collapse -->
+        <div class="collapse show" id="dicas">
+          <div class="card-body">Você ainda não pediu nenhuma dica</div>
+        </div>
+      </div>
+
+      <div *ngIf="true" class="card bg-gray-900 text-gray-300 shadow mb-4">
+        <!-- Card Header - Accordion -->
+        <div class="d-block card-header py-3 bg-gray-900">
+          <h6 class="m-0 font-weight-bold text-gray-300">Código</h6>
+        </div>
+        <!-- Card Content - Collapse -->
+        <div class="collapse show">
+          <div class="card-body">Código aparecerá aqui</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

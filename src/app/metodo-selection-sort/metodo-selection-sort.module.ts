@@ -1,0 +1,19 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { SimulacaoSelectionComponent } from './pages/simulacao-selection/simulacao-selection.component';
+import { AboutSelectionComponent } from './pages/about-selection/about-selection.component';
+import { ExerciciosSelectionComponent } from './pages/exercicios-selection/exercicios-selection.component';
+
+
+
+@NgModule({
+  declarations: [
+    SimulacaoSelectionComponent,
+    AboutSelectionComponent,
+    ExerciciosSelectionComponent
+  ],
+  imports: [
+    CommonModule
+  ]
+})
+export class MetodoSelectionSortModule { }
