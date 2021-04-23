@@ -19,4 +19,8 @@ export class HeaderSimulacaoComponent implements OnInit {
   abrirModalCriarSequencia() {
     console.log('abriu modal');
   }
+
+  criarSequenciaNumerica() {
+    console.log('criou sequencia');
+  }
 }
