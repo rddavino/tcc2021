@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { WelcomeCardComponent } from './welcome-card/welcome-card.component';
-
 import { SimulacaoBubbleComponent } from './metodo-bubble-sort/pages/simulacao-bubble/simulacao-bubble.component';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
@@ -22,6 +26,7 @@ import { ExerciciosQuickComponent } from './metodo-quick-sort/pages/exercicios-q
 import { SimulacaoSelectionComponent } from './metodo-selection-sort/pages/simulacao-selection/simulacao-selection.component';
 import { AboutSelectionComponent } from './metodo-selection-sort/pages/about-selection/about-selection.component';
 import { ExerciciosSelectionComponent } from './metodo-selection-sort/pages/exercicios-selection/exercicios-selection.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -60,10 +65,22 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes),
     SharedModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-center',
+      easing: 'ease-in',
+      easeTime: 300,
+      progressBar: true,
+      progressAnimation: 'decreasing',
+      
+    }),
+    RouterModule.forRoot(routes),
     
   ],
+ 
   providers: [],
   bootstrap: [AppComponent]
 })

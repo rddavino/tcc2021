@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-simulacao-bubble',
@@ -7,11 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SimulacaoBubbleComponent implements OnInit {
 
-  nomeMetodo = 'Bubble Sort';
-
-  descricaoMetodo = "O bubble sort, ou ordenação por flutuação, é um algoritmo de ordenação dos mais simples. A ideia é percorrer o vetor diversas vezes, e a cada passagem fazer flutuar para a direita o maior elemento da sequência. A complexidade desse algoritmo é de ordem quadrática. Ler mais";
-
+  randArray: any[];
   collapseCardTitulo = "Objetivos";
+  indDadosForm: boolean;
   
   listaObjetivos = [
     "Criar sequência numérica.",
@@ -22,9 +21,36 @@ export class SimulacaoBubbleComponent implements OnInit {
     "Repita a operação até que não haja mais trocas a serem feitas.",
   ];
   
-  constructor() { }
+  constructor(
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
   }
 
+
+  criarSequenciaNumerica(formCriaSequencia){
+  let dadosForm = formCriaSequencia.form.value;
+
+  this.randArray =  this.randomArray(Number(dadosForm.tamanho), 9);
+  //console.log("array: ", this.randomArray(Number(dadosForm.tamanho), 9));
+  this.indDadosForm = true;
+  formCriaSequencia.form.reset();
+  return this.randArray;   
+  }
+
+  randomArray(length, max) {
+    return Array.apply(null, Array(length)).map(function() {
+        return Math.round(Math.random() * max);
+    });
+  }
+
+  receberDica() {
+    this.toastr.info('Aqui tem uma super dica'); 
+  }
+
+
+
+
 }
+

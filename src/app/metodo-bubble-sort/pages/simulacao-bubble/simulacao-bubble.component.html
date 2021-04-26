@@ -1,22 +1,73 @@
 <div class="container-fluid">
   <div class="d-flex mt-4">
     <div class="col-8 mr-3">
-      <app-header-simulacao
-        [nomeMetodo]="nomeMetodo"
-        [descricaoMetodo]="descricaoMetodo"
-      >
-      </app-header-simulacao>
+      <div class="row">
+        <h1 class="h3 mb-0 myTitulo text-primary">BUBBLE SORT</h1>
+      </div>
+      <div class="row">
+        <div class="mt-1 separador-titulo"></div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="myDescricao">
+          <p>
+            O bubble sort, ou ordenação por flutuação, é um algoritmo de
+            ordenação dos mais simples. A ideia é percorrer o vetor diversas
+            vezes, e a cada passagem fazer flutuar para a direita o maior
+            elemento da sequência. A complexidade desse algoritmo é de ordem
+            quadrática. Ler mais
+          </p>
+        </div>
+
+        <div id="botoes">
+          <button
+            class="btn btn-success mr-3"
+            data-target="#modal_criarSequencia"
+            data-toggle="modal"
+            title="Criar"
+          >
+            Criar sequência numérica
+          </button>
+          <button 
+          *ngIf="indDadosForm"
+          class="btn btn-success mr-3"
+          data-target="#modal_criarSequencia"
+          data-toggle="modal"
+          title="Criar"> 
+          Criar variável auxiliar
+          </button>
+        </div>
+      </div>
+      <hr class="sidebar-divider" />
 
       <div class="text-center">
-        <div class="banner_Img">
-          <!-- <img
-              class="px-3 px-sm-4 mt-3 mb-4"
-              style="width: 25rem"
-              src="assets/img/undraw_Logic_re_nyb4.svg"
-              alt=""
-            /> -->
+        <div class="banner_Img" *ngIf="!indDadosForm">
+          <img
+            class="px-3 px-sm-4 mt-3 mb-4"
+            style="width: 15rem"
+            src="assets/img/undraw_Logic_re_nyb4.svg"
+            alt=""
+          />
+          <p>Ainda não há nada aqui</p>
         </div>
-        <p>Ainda não há nada aqui</p>
+        <div *ngIf="indDadosForm">
+
+          <div  class="card bg-light mt-5 mb-5 p-2 text-left">
+            <div>
+
+              <i class="fas fa-exclamation-triangle text-warning text-lg"></i> Se não tem certeza de como prosseguir, verifique os objetivos ou <spam (click)="receberDica()" class="text-primary font-italic dicas">clique aqui</spam> para receber dicas.
+            </div>
+          </div>
+          <div >
+            <div class="d-flex flex-row">
+              <div class="card col-1 p-3 mr-4" *ngFor="let item of randArray; let i = index">
+                <h1>
+                  <strong> {{ item }}</strong>
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -55,4 +106,63 @@
   </div>
 </div>
 
-
+<!-- modal criar sequencia -->
+<div id="modal_criarSequencia" class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-black">CRIAR SEQUÊNCIA NUMÉRICA</h5>
+        <button
+          type="button"
+          class="close text-primary"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Ao clicar em avançar, será criada uma
+          <strong>sequência numérica aleatória com números entre 0 e 9.</strong>
+        </p>
+        <form #formCriaSequencia="ngForm" autocomplete="off">
+          <div class="row">
+            <div class="form-group col-6">
+              <label for="sequencia">Nome do vetor:</label>
+              <input
+                ngModel
+                name="vetor"
+                type="tel"
+                class="form-control"
+                id="sequencia"
+                aria-describedby="emailHelp"
+                placeholder="Vetor"
+              />
+            </div>
+            <div class="form-group col-6">
+              <label for="tamanho">Tamanho do vetor:</label>
+              <input
+                ngModel
+                name="tamanho"
+                type="tel"
+                class="form-control"
+                id="tamanho"
+                placeholder="1 a 5"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="criarSequenciaNumerica(formCriaSequencia)"
+        >
+          Avançar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
