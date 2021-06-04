@@ -32,9 +32,41 @@
           <button
             *ngIf="indDadosForm"
             class="btn btn-success mr-3"
-            (click)="criarVariaevlAuxiliar()"
+            (click)="criarVariavelAuxiliar()"
           >
             Criar variável auxiliar
+          </button>
+
+          <button
+            *ngIf="indDadosForm"
+            class="btn btn-success mr-3"
+            (click)="moverParaAuxiliar(posCardSelecionado)"
+          >
+            Mover para variável auxiliar
+          </button>
+
+          <button
+          *ngIf="indDadosForm"
+          class="btn btn-success mr-3"
+          (click)="realizarTroca()"
+        >
+          Realizar troca das posições
+        </button>
+
+          <button
+            *ngIf="indDadosForm"
+            class="btn btn-success mr-3"
+            (click)="moveParaVetor()"
+          >
+            Mover para o vetor
+          </button>
+
+          <button
+            *ngIf="indDadosForm"
+            class="btn btn-success mr-3"
+            (click)="avancar()"
+          >
+              Avançar
           </button>
 
           <button
@@ -47,7 +79,6 @@
         </div>
       </div>
       <hr class="sidebar-divider" />
-
       <div class="text-center">
         <div class="banner_Img" *ngIf="!indDadosForm">
           <img
@@ -71,6 +102,7 @@
               para receber dicas.
             </div>
           </div>
+          {{ mensagem }}
 
           <div class="d-flex align-items-center">
             <div class="d-flex col-11 m-0 p-0">
@@ -80,7 +112,8 @@
                 *ngFor="let item of randArray; let i = index"
               >
                 <div
-                  (click)="indicaOrdenacao(randArray, i)"
+                  id = "{{ 'card' + i }}"
+                  (click)="selecionarCard(i)"
                   class="card col-12 p-3 mr-4 arrayCard"
                 >
                   <h1 class="m-0" >
@@ -101,7 +134,7 @@
                   class="card col-12 p-3 mr-4 bg-dark"
                 >
                   <h1 class="m-0 text-light" >
-                    <strong>5</strong>
+                    <strong>{{ aux }}</strong>
                   </h1>
                 </div>
               </div>
@@ -118,38 +151,40 @@
       </div>
     </div>
 
-    <div class="col-3">
-      <app-collapse-card-objetivo> </app-collapse-card-objetivo>
 
-      <div *ngIf="true" class="card text-dark shadow mb-4">
-        <!-- Card Header - Accordion -->
-        <a
-          href="#dicas"
-          class="d-block card-header py-3"
-          data-toggle="collapse"
-          role="button"
-          aria-expanded="true"
-          aria-controls="dicas"
-        >
-          <h6 class="m-0 font-weight-bold text-primary">Dicas</h6>
-        </a>
-        <!-- Card Content - Collapse -->
-        <div class="collapse show" id="dicas">
-          <div class="card-body">Você ainda não pediu nenhuma dica</div>
+      <div class="col-3" >
+        <app-collapse-card-objetivo> </app-collapse-card-objetivo>
+  
+        <div *ngIf="true" class="card text-dark shadow mb-4">
+          <!-- Card Header - Accordion -->
+          <a
+            href="#dicas"
+            class="d-block card-header py-3"
+            data-toggle="collapse"
+            role="button"
+            aria-expanded="true"
+            aria-controls="dicas"
+          >
+            <h6 class="m-0 font-weight-bold text-primary">Dicas</h6>
+          </a>
+          <!-- Card Content - Collapse -->
+          <div class="collapse show" id="dicas">
+            <div class="card-body">Você ainda não pediu nenhuma dica</div>
+          </div>
+        </div>
+  
+        <div *ngIf="true" class="card bg-gray-900 text-gray-300 shadow mb-4">
+          <!-- Card Header - Accordion -->
+          <div class="d-block card-header py-3 bg-gray-900">
+            <h6 class="m-0 font-weight-bold text-gray-300">Código</h6>
+          </div>
+          <!-- Card Content - Collapse -->
+          <div class="collapse show">
+            <div class="card-body">Código aparecerá aqui</div>
+          </div>
         </div>
       </div>
 
-      <div *ngIf="true" class="card bg-gray-900 text-gray-300 shadow mb-4">
-        <!-- Card Header - Accordion -->
-        <div class="d-block card-header py-3 bg-gray-900">
-          <h6 class="m-0 font-weight-bold text-gray-300">Código</h6>
-        </div>
-        <!-- Card Content - Collapse -->
-        <div class="collapse show">
-          <div class="card-body">Código aparecerá aqui</div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 

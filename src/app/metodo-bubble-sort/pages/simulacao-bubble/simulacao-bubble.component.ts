@@ -13,6 +13,11 @@ export class SimulacaoBubbleComponent implements OnInit {
   indDadosForm: boolean;
   indAuxiliarCriada: boolean;
   mensagem: string;
+  aux: "";
+  direita = 1; //guarda a posição da carta!
+  esquerda = 0;
+  posCardSelecionado:  number;
+  valorCardSelecionado: number;
 
   listaObjetivos = [
     "Criar sequência numérica.",
@@ -51,44 +56,108 @@ export class SimulacaoBubbleComponent implements OnInit {
     this.toastr.info('Aqui tem uma super dica');
   }
 
-  criarVariaevlAuxiliar() {
+  criarVariavelAuxiliar() {
     this.indAuxiliarCriada = true;
 
   }
 
-  limpar(randArray) {
-    randArray = null;
+  limpar() {
+    this.randArray = null;
     this.indDadosForm = false;
     this.indAuxiliarCriada = false;
 
   }
 
-
-  // console.log("valor i na posicao i: ", randArray[i], i);
-  // console.log("valor j na posição j: ", randArray[j], j);
-  // console.log("valor j na posição j: ", randArray[j], j); 
-
-  indicaOrdenacao(randArray, pos) {
-
-    console.log("randArray: ", randArray);
-    console.log("posição: ", randArray[pos]);
-
-
-    if (randArray[pos] > randArray[pos + 1]) {
-     this.mensagem = "mova o elemento para a direita";
-     return;
+  isOrdenado(): boolean {
+    //comparar pos esquerda e direita
+    if (this.randArray[this.direita] > this.randArray[this.esquerda]) {
+      return true;
     }
-    
-    this.mensagem = "elemento no lugar correto do pograma";
-    return;
+    else {
+      return false;
+    }
   }
 
+  realizarTroca(): void {
+    //jogar valor da posição direita na esquerda
+    this.randArray[this.esquerda] = this.randArray[this.direita];
+  }
 
+  moveParaVetor(): void {
+    //jogar valor da auxiliar para posição direita
+    this.randArray[this.direita] = this.aux;
+  }
 
+  moverParaAuxiliar(posCardSelecionado): void {
+    // verificar se o valor recebido está na posição esquerda ou direita
+    //       se for direita => disclaimer (não pode mover por fins educativos)
+    //       se for esquerda = > chama função isOrdenado( )
+    //           se retorno da função isOrdenado == true = > modal informa que ja está ordenado
+    //           se retorno da função isOrdenado == false => colocar valorDaPos em aux
 
+    if (posCardSelecionado == this.direita) {
+      this.mensagem = "numa situaçaõ real pode mover qlquer uma, mas para explicar aqui está restrita uma só";
+    }
+    else {
 
+      let res = this.isOrdenado();
 
+      if (res) {
+        this.mensagem = "já está ordenado";
+      }
+      else {
+        this.aux = this.randArray[posCardSelecionado]
+      }
 
+    }
 
+  }
+
+  avancar(): void {
+
+    // verificar se todo o vetor está ordenado, se sim => modal feliz
+    // se não, chamar isOrdenado
+    //     se true => verificar se pos dir + 1 = tam
+    //                 se true => esq = 0, dir = 1
+    //                 se false => esq++ dir++
+        // se false modal não pode avançar, ordene.         
+    
+    if (this.verificarOrdenacao()) {
+      this.mensagem = "acertô miseravi"
+      console.log("vetor ordenado");
+    }
+    else if (this.isOrdenado()){
+      console.log("carta ordenada")
+      // verificar se pos dir + 1 = tam
+      if (this.direita + 1 == this.randArray.length){
+        this.esquerda = 0;
+        this.direita = 1;
+      }
+      else{
+        this.esquerda++;
+        this.direita++;
+      }
+    }
+    else {
+      this.mensagem = "não pode avançar, ordene!";
+      console.log(this.mensagem);
+    }
+  }
+
+  verificarOrdenacao(): boolean {
+    var isOrdenado = true;
+    for (var j = 0; j < this.randArray.length - 1; j++) {
+      if (this.randArray[j] > this.randArray[j + 1]) {
+        isOrdenado = false;
+        break;
+      }
+    }
+    return isOrdenado;
+  }
+
+  selecionarCard(i) : void {
+    this.posCardSelecionado = i;
+    this.valorCardSelecionado = this.randArray[i];
+  }
 
 }
