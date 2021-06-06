@@ -19,78 +19,54 @@
           </p>
         </div>
 
-        <div id="botoes">
-          <button
-            class="btn btn-success mr-3"
-            data-target="#modal_criarSequencia"
-            data-toggle="modal"
-            title="Criar"
-          >
-            Criar sequência numérica
-          </button>
+        <div id="botoesTopo">
+          <div>
+            <button
+              id="btnCriarSequencia"
+              class="btn btn-success mr-3 myButton"
+              data-target="#modal_criarSequencia"
+              data-toggle="modal"
+              title="Criar"
+              [hidden]="indSequenciaCriada"
+            >
+              Criar sequência numérica
+            </button>
 
-          <button
-            *ngIf="indDadosForm"
-            class="btn btn-success mr-3"
-            (click)="criarVariavelAuxiliar()"
-          >
-            Criar variável auxiliar
-          </button>
+            <div class="d-flex justify-content-between">
+              <button
+                *ngIf="indDadosForm"
+                class="btn btn-secondary myButton mr-3"
+                (click)="limpar()"
+              >
+                Recomeçar
+              </button>
 
-          <button
-            *ngIf="indDadosForm"
-            class="btn btn-success mr-3"
-            (click)="moverParaAuxiliar(posCardSelecionado)"
-          >
-            Mover para variável auxiliar
-          </button>
-
-          <button
-          *ngIf="indDadosForm"
-          class="btn btn-success mr-3"
-          (click)="realizarTroca()"
-        >
-          Realizar troca das posições
-        </button>
-
-          <button
-            *ngIf="indDadosForm"
-            class="btn btn-success mr-3"
-            (click)="moveParaVetor()"
-          >
-            Mover para o vetor
-          </button>
-
-          <button
-            *ngIf="indDadosForm"
-            class="btn btn-success mr-3"
-            (click)="avancar()"
-          >
-              Avançar
-          </button>
-
-          <button
-            *ngIf="indDadosForm"
-            class="btn btn-secondary"
-            (click)="limpar()"
-          >
-            Recomeçar
-          </button>
+              <button
+                *ngIf="indDadosForm"
+                class="btn btn-success myButton"
+                (click)="criarVariavelAuxiliar()"
+                [hidden]="indAuxiliarCriada"
+              >
+                Criar variável auxiliar
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-      <hr class="sidebar-divider" />
+
+      <hr class="row sidebar-divider" />
+
       <div class="text-center">
-        <div class="banner_Img" *ngIf="!indDadosForm">
-          <img
-            class="px-3 px-sm-4 mt-3 mb-4"
-            style="width: 15rem"
-            src="assets/img/undraw_Logic_re_nyb4.svg"
-            alt=""
-          />
-          <p>Ainda não há nada aqui</p>
+        <div
+          class="d-flex justify-content-center align-items-center"
+          style="height: 410px"
+          *ngIf="!indDadosForm"
+        >
+          <h3>Não há nada aqui ainda... <i class="far fa-frown"></i></h3>
         </div>
+
         <div *ngIf="indDadosForm">
-          <div class="card bg-light mt-3 mb-5 p-2 text-left">
+          <div class="row card bg-light mt-3 mb-5 p-2 text-left">
             <div>
               <i class="fas fa-exclamation-triangle text-warning text-lg"></i>
               Se não tem certeza de como prosseguir, verifique os objetivos ou
@@ -106,97 +82,127 @@
 
           <div class="d-flex align-items-center">
             <div class="d-flex col-11 m-0 p-0">
-              <div 
-                
-              class="col-1 m-2 ml-0 p-0"
+              <div
+                class="col-1 m-2 ml-0 p-0"
                 *ngFor="let item of randArray; let i = index"
               >
-                <div
-                  id = "{{ 'card' + i }}"
-                  (click)="selecionarCard(i)"
-                  class="card col-12 p-3 mr-4 arrayCard"
-                >
-                  <h1 class="m-0" >
-                    <strong>{{ item }}</strong>
-                  </h1>
+                <div>
+                  <small class="mb-4">[ {{ i }} ]</small>
+                  <div
+                    [attr.id]="i"
+                    (click)="selecionarCard(i)"
+                    class="card col-12 p-2 mr-4 arrayCard myArrayElement"
+                  >
+                    <h1 class="m-0">
+                      <strong>{{ item }}</strong>
+                    </h1>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div class="d-flex col-11 m-0 p-0">
-              <div 
-                
-              class="col-1 m-2 ml-0 p-0"
-              *ngIf="indAuxiliarCriada"
-              >
-                <div
-                  
-                  class="card col-12 p-3 mr-4 bg-dark"
-                >
-                  <h1 class="m-0 text-light" >
-                    <strong>{{ aux }}</strong>
-                  </h1>
+              <div class="col-1 m-2 ml-0 p-0" *ngIf="indAuxiliarCriada">
+                <div>
+                  <small class="mb-4">Auxiliar</small>
+                    <div class="card col-12 p-2 mr-4 bg-dark myArrayElement">
+                      <h1 class="m-0 text-light">
+                        <strong>{{ aux }}</strong>
+                      </h1>
+                    </div>
                 </div>
               </div>
             </div>
-            
-
           </div>
 
+          <div id="botoesBottom" class="mt-5" *ngIf="indAuxiliarCriada">
+            <hr />
+            <div class="d-flex ">
+              <div class="col-10">
+                <button
+                  *ngIf="indDadosForm"
+                  class="btn btn-outline-primary mr-3 myButton"
+                  (click)="moverParaAuxiliar(posCardSelecionado)"
+                >
+                  Mover para variável auxiliar
+                </button>
 
+                <button
+                  *ngIf="indDadosForm"
+                  class="btn btn-outline-primary mr-3 myButton"
+                  (click)="realizarTroca()"
+                >
+                  Realizar troca das posições
+                </button>
 
+                <button
+                  *ngIf="indDadosForm"
+                  class="btn btn-outline-primary mr-3 myButton"
+                  (click)="moveParaVetor()"
+                >
+                  Mover para o vetor
+                </button>
+              </div>
 
-
+              <div class="col-2">
+                <button
+                  *ngIf="indDadosForm"
+                  class="btn btn-outline-success myButton"
+                  (click)="avancar()"
+                >
+                  Avançar
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
+    <div class="col-3">
+      <app-collapse-card-objetivo> </app-collapse-card-objetivo>
 
-      <div class="col-3" >
-        <app-collapse-card-objetivo> </app-collapse-card-objetivo>
-  
-        <div *ngIf="true" class="card text-dark shadow mb-4">
-          <!-- Card Header - Accordion -->
-          <a
-            href="#dicas"
-            class="d-block card-header py-3"
-            data-toggle="collapse"
-            role="button"
-            aria-expanded="true"
-            aria-controls="dicas"
-          >
-            <h6 class="m-0 font-weight-bold text-primary">Dicas</h6>
-          </a>
-          <!-- Card Content - Collapse -->
-          <div class="collapse show" id="dicas">
-            <div class="card-body">Você ainda não pediu nenhuma dica</div>
-          </div>
-        </div>
-  
-        <div *ngIf="true" class="card bg-gray-900 text-gray-300 shadow mb-4">
-          <!-- Card Header - Accordion -->
-          <div class="d-block card-header py-3 bg-gray-900">
-            <h6 class="m-0 font-weight-bold text-gray-300">Código</h6>
-          </div>
-          <!-- Card Content - Collapse -->
-          <div class="collapse show">
-            <div class="card-body">Código aparecerá aqui</div>
-          </div>
+      <div *ngIf="true" class="card text-dark shadow mb-4">
+        <!-- Card Header - Accordion -->
+        <a
+          href="#dicas"
+          class="d-block card-header py-3"
+          data-toggle="collapse"
+          role="button"
+          aria-expanded="true"
+          aria-controls="dicas"
+        >
+          <h6 class="m-0 font-weight-bold text-primary">Dicas</h6>
+        </a>
+        <!-- Card Content - Collapse -->
+        <div class="collapse show" id="dicas">
+          <div class="card-body">Você ainda não pediu nenhuma dica</div>
         </div>
       </div>
 
+      <div *ngIf="true" class="card bg-gray-900 text-gray-300 shadow mb-4">
+        <!-- Card Header - Accordion -->
+        <div class="d-block card-header py-3 bg-gray-900">
+          <h6 class="m-0 font-weight-bold text-gray-300">Código</h6>
+        </div>
+        <!-- Card Content - Collapse -->
+        <div class="collapse show">
+          <div class="card-body">Código aparecerá aqui</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 <!-- modal criar sequencia -->
-<div id="modal_criarSequencia" class="modal fade" tabindex="-1" >
+<div id="modal_criarSequencia" class="modal fade" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title text-black">CRIAR SEQUÊNCIA NUMÉRICA</h5>
         <button
           type="button"
-          class="close text-primary"
+          class="close text-primary p-1"
           data-dismiss="modal"
           aria-label="Close"
         >
@@ -239,11 +245,48 @@
       <div class="modal-footer">
         <button
           type="button"
-          class="btn btn-primary"
-          data-dismiss="modal" 
+          class="btn btn-primary myButton"
+          data-dismiss="modal"
           (click)="criarSequenciaNumerica(formCriaSequencia)"
         >
           Avançar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- modal mensagem -->
+
+<div id="modal_comunicado" class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-black">ATENÇÃO:</h5>
+        <button
+          type="button"
+          class="close text-primary p-1"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+         {{ mensagem }}
+        </p>
+       
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary myButton"
+          data-dismiss="modal"
+          
+        >
+          Fechar
         </button>
       </div>
     </div>

@@ -10,14 +10,18 @@ export class SimulacaoBubbleComponent implements OnInit {
 
   randArray: any[];
   collapseCardTitulo = "Objetivos";
-  indDadosForm: boolean;
-  indAuxiliarCriada: boolean;
+  
   mensagem: string;
   aux: "";
   direita = 1; //guarda a posição da carta!
   esquerda = 0;
   posCardSelecionado:  number;
   valorCardSelecionado: number;
+
+  indSequenciaCriada: boolean;
+  indDadosForm: boolean;
+  indAuxiliarCriada: boolean;
+  indCardSelecionado: boolean;
 
   listaObjetivos = [
     "Criar sequência numérica.",
@@ -30,7 +34,12 @@ export class SimulacaoBubbleComponent implements OnInit {
 
   constructor(
     private toastr: ToastrService
-  ) { }
+  ) { 
+    this.indSequenciaCriada = false;
+    this.indAuxiliarCriada = false;
+    this.indCardSelecionado = false;
+   
+  }
 
   ngOnInit(): void {
   }
@@ -43,6 +52,7 @@ export class SimulacaoBubbleComponent implements OnInit {
     //console.log("array: ", this.randomArray(Number(dadosForm.tamanho), 9));
     this.indDadosForm = true;
     formCriaSequencia.form.reset();
+    this.indSequenciaCriada = true;
     return this.randArray;
   }
 
@@ -65,6 +75,9 @@ export class SimulacaoBubbleComponent implements OnInit {
     this.randArray = null;
     this.indDadosForm = false;
     this.indAuxiliarCriada = false;
+    this.indSequenciaCriada = false;
+    this.mensagem = "";
+    this.aux = "";
 
   }
 
@@ -114,7 +127,7 @@ export class SimulacaoBubbleComponent implements OnInit {
   }
 
   avancar(): void {
-
+    this.indCardSelecionado = false;
     // verificar se todo o vetor está ordenado, se sim => modal feliz
     // se não, chamar isOrdenado
     //     se true => verificar se pos dir + 1 = tam
@@ -158,6 +171,13 @@ export class SimulacaoBubbleComponent implements OnInit {
   selecionarCard(i) : void {
     this.posCardSelecionado = i;
     this.valorCardSelecionado = this.randArray[i];
+    let element = document.getElementById(i);
+    element.className = 'cardSelecionado';
+    this.indCardSelecionado = true;
   }
+
+
+  isCardSelecionado(i): void {}
+ 
 
 }

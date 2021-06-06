@@ -36,3 +36,27 @@ body{
     cursor: pointer;
 }
 
+.myButton {
+    padding: 12px;
+    padding-right: 32px;
+    padding-left: 32px;
+ 
+}
+
+.myArrayElement {
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardSelecionado{
+    
+    border-radius: 4px;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #36b9cc;
+    color: #fff;
+}
