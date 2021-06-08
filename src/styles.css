@@ -32,6 +32,11 @@ body{
 
 }
 
+.arrayCard {
+    background-color: #fff;
+    color: #cacaca
+}
+
 .arrayCard:hover{
     cursor: pointer;
 }
@@ -51,12 +56,12 @@ body{
 }
 
 .cardSelecionado{
-    
     border-radius: 4px;
     min-height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #36b9cc;
-    color: #fff;
+    border: 1px solid #36b9cc;
+    background-color: #fff;
+    color: #36b9cc
 }

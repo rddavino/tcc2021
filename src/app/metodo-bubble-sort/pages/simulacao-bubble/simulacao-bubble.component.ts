@@ -11,7 +11,9 @@ export class SimulacaoBubbleComponent implements OnInit {
   randArray: any[];
   collapseCardTitulo = "Objetivos";
   
-  mensagem: string;
+  mensagemInfo: string;
+  mensagemAlerta: string;
+  mensagemAtencao: string;
   aux: "";
   direita = 1; //guarda a posição da carta!
   esquerda = 0;
@@ -67,6 +69,8 @@ export class SimulacaoBubbleComponent implements OnInit {
   }
 
   criarVariavelAuxiliar() {
+    this.mensagemInfo = "";
+    this.mensagemAlerta = "";
     this.indAuxiliarCriada = true;
 
   }
@@ -76,8 +80,8 @@ export class SimulacaoBubbleComponent implements OnInit {
     this.indDadosForm = false;
     this.indAuxiliarCriada = false;
     this.indSequenciaCriada = false;
-    this.mensagem = "";
     this.aux = "";
+    this.limparMensagem();
 
   }
 
@@ -109,14 +113,14 @@ export class SimulacaoBubbleComponent implements OnInit {
     //           se retorno da função isOrdenado == false => colocar valorDaPos em aux
 
     if (posCardSelecionado == this.direita) {
-      this.mensagem = "numa situaçaõ real pode mover qlquer uma, mas para explicar aqui está restrita uma só";
+      this.mensagemAtencao = "Numa situação real pode mover qualquer uma, mas para explicar aqui está restrita uma só";
     }
     else {
 
       let res = this.isOrdenado();
 
       if (res) {
-        this.mensagem = "já está ordenado";
+        this.mensagemInfo = "Os elementos das duas posições adjacentes já estão ordenados.";
       }
       else {
         this.aux = this.randArray[posCardSelecionado]
@@ -136,7 +140,7 @@ export class SimulacaoBubbleComponent implements OnInit {
         // se false modal não pode avançar, ordene.         
     
     if (this.verificarOrdenacao()) {
-      this.mensagem = "acertô miseravi"
+      this.mensagemInfo = "acertô miseravi"
       console.log("vetor ordenado");
     }
     else if (this.isOrdenado()){
@@ -152,8 +156,7 @@ export class SimulacaoBubbleComponent implements OnInit {
       }
     }
     else {
-      this.mensagem = "não pode avançar, ordene!";
-      console.log(this.mensagem);
+      this.mensagemInfo = "não pode avançar, ordene!";
     }
   }
 
@@ -168,16 +171,28 @@ export class SimulacaoBubbleComponent implements OnInit {
     return isOrdenado;
   }
 
-  selecionarCard(i) : void {
-    this.posCardSelecionado = i;
-    this.valorCardSelecionado = this.randArray[i];
+  selecionarCard(i): void {
+
+    if(!this.indAuxiliarCriada) {
+      this.mensagemAlerta = "Antes de tentar ordernar o vator, crie uma variável auxiliar."
+    }
+    else {
+      this.posCardSelecionado = i;
+      this.valorCardSelecionado = this.randArray[i];
+      this.isCardSelecionado(i);
+    }
+  }
+
+
+  isCardSelecionado(i): void {
     let element = document.getElementById(i);
     element.className = 'cardSelecionado';
     this.indCardSelecionado = true;
   }
-
-
-  isCardSelecionado(i): void {}
  
-
+  limparMensagem(): void{
+    this.mensagemInfo = "";
+    this.mensagemAlerta = "";
+    this.mensagemAtencao = "";
+  }
 }

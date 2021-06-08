@@ -65,20 +65,45 @@
           <h3>Não há nada aqui ainda... <i class="far fa-frown"></i></h3>
         </div>
 
-        <div *ngIf="indDadosForm">
-          <div class="row card bg-light mt-3 mb-5 p-2 text-left">
-            <div>
-              <i class="fas fa-exclamation-triangle text-warning text-lg"></i>
-              Se não tem certeza de como prosseguir, verifique os objetivos ou
-              <spam
+        <div *ngIf="indDadosForm" >
+         
+          <div
+            *ngIf="!mensagemInfo && !mensagemAlerta && !mensagemAtencao"
+            class="row alert alert-light fade show text-left">
+            <i class="fas fa-exclamation-triangle text-warning text-lg mr-2"></i>
+              Se não tem certeza de como prosseguir, verifique os objetivos ou 
+              <span
                 (click)="receberDica()"
-                class="text-primary font-italic dicas"
-                >clique aqui</spam
-              >
-              para receber dicas.
-            </div>
+                class="text-primary font-italic dicas ml-2 mr-2"
+                >clique aqui</span> para receber dicas.
           </div>
-          {{ mensagem }}
+
+          <div
+          *ngIf="mensagemAlerta"
+            class="alert alert-warning fade show text-left" role="alert">
+            <strong>Hey! </strong> {{ mensagemAlerta }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="limparMensagem()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div
+          *ngIf="mensagemAtencao"
+            class="alert alert-danger alert-dismissible fade show text-left" role="alert">
+            <strong>Atenção: </strong> {{ mensagemAtencao }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="limparMensagem()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          
+          <div
+          *ngIf="mensagemInfo"
+            class="alert alert-info alert-dismissible fade show text-left" role="alert">
+            <strong>Hey!</strong> {{ mensagemInfo }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="limparMensagem()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
 
           <div class="d-flex align-items-center">
             <div class="d-flex col-11 m-0 p-0">
@@ -93,6 +118,7 @@
                     (click)="selecionarCard(i)"
                     class="card col-12 p-2 mr-4 arrayCard myArrayElement"
                   >
+                    
                     <h1 class="m-0">
                       <strong>{{ item }}</strong>
                     </h1>
@@ -105,7 +131,10 @@
               <div class="col-1 m-2 ml-0 p-0" *ngIf="indAuxiliarCriada">
                 <div>
                   <small class="mb-4">Auxiliar</small>
-                    <div class="card col-12 p-2 mr-4 bg-dark myArrayElement">
+                    <div 
+                      id="cardAux" 
+                      (click) = "isCardAuxSelecionado(cardAux)"
+                      class="card col-12 p-2 mr-4 bg-dark myArrayElement">
                       <h1 class="m-0 text-light">
                         <strong>{{ aux }}</strong>
                       </h1>
@@ -216,7 +245,7 @@
         </p>
         <form #formCriaSequencia="ngForm" autocomplete="off">
           <div class="row">
-            <div class="form-group col-6">
+            <!-- <div class="form-group col-6">
               <label for="sequencia">Nome do vetor:</label>
               <input
                 ngModel
@@ -227,7 +256,7 @@
                 aria-describedby="emailHelp"
                 placeholder="Vetor"
               />
-            </div>
+            </div> -->
             <div class="form-group col-6">
               <label for="tamanho">Tamanho do vetor:</label>
               <input
@@ -236,7 +265,9 @@
                 type="tel"
                 class="form-control"
                 id="tamanho"
-                placeholder="1 a 6"
+                placeholder="De 1 a 9"
+                maxlength="1"
+                
               />
             </div>
           </div>
@@ -256,39 +287,3 @@
   </div>
 </div>
 
-
-<!-- modal mensagem -->
-
-<div id="modal_comunicado" class="modal fade" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title text-black">ATENÇÃO:</h5>
-        <button
-          type="button"
-          class="close text-primary p-1"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>
-         {{ mensagem }}
-        </p>
-       
-      </div>
-      <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-primary myButton"
-          data-dismiss="modal"
-          
-        >
-          Fechar
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
