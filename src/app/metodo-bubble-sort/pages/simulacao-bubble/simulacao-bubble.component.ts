@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({
   selector: 'app-simulacao-bubble',
@@ -48,14 +49,16 @@ export class SimulacaoBubbleComponent implements OnInit {
 
 
   criarSequenciaNumerica(formCriaSequencia) {
-    let dadosForm = formCriaSequencia.form.value;
-
+    let dadosForm = formCriaSequencia.form.value;    
     this.randArray = this.randomArray(Number(dadosForm.tamanho), 9);
-    //console.log("array: ", this.randomArray(Number(dadosForm.tamanho), 9));
-    this.indDadosForm = true;
-    formCriaSequencia.form.reset();
-    this.indSequenciaCriada = true;
-    return this.randArray;
+    if(dadosForm.tamanho!== '' || dadosForm.tamanho !== 0) {
+      this.indDadosForm = true;
+      formCriaSequencia.form.reset();
+      this.indSequenciaCriada = true;
+      return this.randArray;
+    } else {
+      this.mensagemAtencao = "O vetor deve ter no mínimo 1 elemento."
+    }
   }
 
   randomArray(length, max) {
