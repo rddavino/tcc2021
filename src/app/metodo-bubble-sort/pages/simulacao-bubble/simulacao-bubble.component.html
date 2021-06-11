@@ -96,6 +96,7 @@
             </button>
           </div>
           
+          
           <div
           *ngIf="mensagemInfo"
             class="alert alert-info alert-dismissible fade show text-left" role="alert">
@@ -109,8 +110,10 @@
             <div class="d-flex col-11 m-0 p-0">
               <div
                 class="col-1 m-2 ml-0 p-0"
-                *ngFor="let item of randArray; let i = index"
+                *ngFor="let item of randArray; let last = last; let i = index; trackBy: identify"
               >
+                <span *ngIf="last">{{abrirCartas()}}</span>
+
                 <div>
                   <small class="mb-4">[ {{ i }} ]</small>
                   <div

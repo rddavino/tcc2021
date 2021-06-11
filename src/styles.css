@@ -34,7 +34,8 @@ body{
 
 .arrayCard {
     background-color: #fff;
-    color: #cacaca
+    color: #cacaca;
+    pointer-events: none;
 }
 
 .arrayCard:hover{

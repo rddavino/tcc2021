@@ -24,7 +24,8 @@ export class SimulacaoBubbleComponent implements OnInit {
   indSequenciaCriada: boolean;
   indDadosForm: boolean;
   indAuxiliarCriada: boolean;
-  indCardSelecionado: boolean;
+  indCardSelecionado = [];
+  isCardAuxiliarClicada: boolean;
 
   listaObjetivos = [
     "Criar sequência numérica.",
@@ -40,24 +41,30 @@ export class SimulacaoBubbleComponent implements OnInit {
   ) { 
     this.indSequenciaCriada = false;
     this.indAuxiliarCriada = false;
-    this.indCardSelecionado = false;
-   
+    
   }
-
+  
   ngOnInit(): void {
+   
   }
 
 
   criarSequenciaNumerica(formCriaSequencia) {
+
     let dadosForm = formCriaSequencia.form.value;    
-    this.randArray = this.randomArray(Number(dadosForm.tamanho), 9);
-    if(dadosForm.tamanho!== '' || dadosForm.tamanho !== 0) {
+
+    let tamanho = dadosForm.tamanho;
+    this.randArray = this.randomArray(Number(tamanho), 9);
+
+    if(tamanho !== '' || tamanho !== 0) {
       this.indDadosForm = true;
       formCriaSequencia.form.reset();
       this.indSequenciaCriada = true;
+     
       return this.randArray;
+
     } else {
-      this.mensagemAtencao = "O vetor deve ter no mínimo 1 elemento."
+      this.mensagemAtencao = "O vetor deve ter no mínimo 3 elementos."
     }
   }
 
@@ -88,9 +95,13 @@ export class SimulacaoBubbleComponent implements OnInit {
 
   }
 
+  identify(index) {
+    return index;
+ }
+
   isOrdenado(): boolean {
     //comparar pos esquerda e direita
-    if (this.randArray[this.direita] > this.randArray[this.esquerda]) {
+    if (this.randArray[this.direita] >= this.randArray[this.esquerda]) {
       return true;
     }
     else {
@@ -116,7 +127,12 @@ export class SimulacaoBubbleComponent implements OnInit {
     //           se retorno da função isOrdenado == false => colocar valorDaPos em aux
 
     if (posCardSelecionado == this.direita) {
-      this.mensagemAtencao = "Numa situação real pode mover qualquer uma, mas para explicar aqui está restrita uma só";
+      if(this.isOrdenado()){
+        this.mensagemInfo = "Os elementos das duas posições adjacentes já estão ordenados.";
+      }
+      else{
+        this.mensagemAtencao = "Qualquer uma das posições poderia ter o seu valor movido para a variável auxiliar. Aqui, para fins educativos, limitamos a movimentação somente do valor da posição à esquerda.";
+      }
     }
     else {
 
@@ -134,7 +150,6 @@ export class SimulacaoBubbleComponent implements OnInit {
   }
 
   avancar(): void {
-    this.indCardSelecionado = false;
     // verificar se todo o vetor está ordenado, se sim => modal feliz
     // se não, chamar isOrdenado
     //     se true => verificar se pos dir + 1 = tam
@@ -143,23 +158,32 @@ export class SimulacaoBubbleComponent implements OnInit {
         // se false modal não pode avançar, ordene.         
     
     if (this.verificarOrdenacao()) {
-      this.mensagemInfo = "acertô miseravi"
+      this.mensagemInfo = "Vetor ordenado"
       console.log("vetor ordenado");
     }
     else if (this.isOrdenado()){
       console.log("carta ordenada")
+
       // verificar se pos dir + 1 = tam
       if (this.direita + 1 == this.randArray.length){
+        this.fecharCartas(this.esquerda)
+        this.fecharCartas(this.direita)
+
         this.esquerda = 0;
         this.direita = 1;
+
       }
       else{
+        this.fecharCartas(this.esquerda);
         this.esquerda++;
         this.direita++;
       }
+      this.abrirCartas();
+
+      
     }
     else {
-      this.mensagemInfo = "não pode avançar, ordene!";
+      this.mensagemInfo = "Não é possível avançar ainda pois os elementos não estão ordenados!";
     }
   }
 
@@ -190,7 +214,6 @@ export class SimulacaoBubbleComponent implements OnInit {
   isCardSelecionado(i): void {
     let element = document.getElementById(i);
     element.className = 'cardSelecionado';
-    this.indCardSelecionado = true;
   }
  
   limparMensagem(): void{
@@ -198,4 +221,15 @@ export class SimulacaoBubbleComponent implements OnInit {
     this.mensagemAlerta = "";
     this.mensagemAtencao = "";
   }
+
+  abrirCartas(): void {
+    this.isCardSelecionado(this.esquerda);
+    this.isCardSelecionado(this.direita);
+  }
+  
+  fecharCartas(i): void {
+    let element = document.getElementById(i);
+    element.className = 'card col-12 p-2 mr-4 bg-info text-info arrayCard myArrayElement';
+  }
+
 }
