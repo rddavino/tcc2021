@@ -112,7 +112,7 @@
                 class="col-1 m-2 ml-0 p-0"
                 *ngFor="let item of randArray; let last = last; let i = index; trackBy: identify"
               >
-                <span *ngIf="last">{{abrirCartas()}}</span>
+                <span *ngIf="last && !isCardSelecionado">{{abrirCartas()}}</span>
 
                 <div>
                   <small class="mb-4">[ {{ i }} ]</small>
@@ -208,7 +208,7 @@
         </a>
         <!-- Card Content - Collapse -->
         <div class="collapse show" id="dicas">
-          <div class="card-body">Você ainda não pediu nenhuma dica</div>
+          <div class="card-body">Comece clicando em uma carta para selecioná-la.</div>
         </div>
       </div>
 

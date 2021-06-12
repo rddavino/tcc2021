@@ -18,6 +18,7 @@ export class SimulacaoBubbleComponent implements OnInit {
   aux: "";
   direita = 1; //guarda a posição da carta!
   esquerda = 0;
+  isCardSelecionado = false;
   posCardSelecionado:  number;
   valorCardSelecionado: number;
 
@@ -199,21 +200,31 @@ export class SimulacaoBubbleComponent implements OnInit {
   }
 
   selecionarCard(i): void {
-
     if(!this.indAuxiliarCriada) {
       this.mensagemAlerta = "Antes de tentar ordernar o vator, crie uma variável auxiliar."
     }
     else {
+      if (this.posCardSelecionado != null && i != this.posCardSelecionado) {
+        this.isCartaAberta(this.posCardSelecionado);
+        this.isCardSelecionado = true;
+      } else {
+        this.isCardSelecionado = !this.isCardSelecionado;
+      }
+
       this.posCardSelecionado = i;
       this.valorCardSelecionado = this.randArray[i];
-      this.isCardSelecionado(i);
+      this.isCartaSelecionada(i);
     }
   }
 
-
-  isCardSelecionado(i): void {
+  isCartaSelecionada(i): void {
     let element = document.getElementById(i);
-    element.className = 'cardSelecionado';
+    element.className = 'cardSelecionado card col-12 p-2 mr-4';
+  }
+
+  isCartaAberta(i): void {
+    let element = document.getElementById(i);
+    element.className = 'cardAberto';
   }
  
   limparMensagem(): void{
@@ -223,13 +234,12 @@ export class SimulacaoBubbleComponent implements OnInit {
   }
 
   abrirCartas(): void {
-    this.isCardSelecionado(this.esquerda);
-    this.isCardSelecionado(this.direita);
+    this.isCartaAberta(this.esquerda);
+    this.isCartaAberta(this.direita);
   }
   
   fecharCartas(i): void {
     let element = document.getElementById(i);
     element.className = 'card col-12 p-2 mr-4 bg-info text-info arrayCard myArrayElement';
   }
-
 }

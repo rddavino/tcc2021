@@ -56,7 +56,7 @@ body{
     align-items: center;
 }
 
-.cardSelecionado{
+.cardAberto {
     border-radius: 4px;
     min-height: 100px;
     display: flex;
@@ -64,5 +64,16 @@ body{
     align-items: center;
     border: 1px solid #36b9cc;
     background-color: #fff;
-    color: #36b9cc
+    color: #36b9cc;
+    cursor: pointer;
+}
+
+.cardSelecionado {
+    border-radius: 4px;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e2bb0b;
+    color: #fff;
 }
