@@ -21,6 +21,7 @@ export class SimulacaoBubbleComponent implements OnInit {
   isCardSelecionado = false;
   posCardSelecionado:  number;
   valorCardSelecionado: number;
+  isVetorOrdenado = false;
 
   indSequenciaCriada: boolean;
   indDadosForm: boolean;
@@ -52,11 +53,13 @@ export class SimulacaoBubbleComponent implements OnInit {
 
   criarSequenciaNumerica(formCriaSequencia) {
 
+    
     let dadosForm = formCriaSequencia.form.value;    
-
+    
     let tamanho = dadosForm.tamanho;
     this.randArray = this.randomArray(Number(tamanho), 9);
-
+    this.randArray.sort(() => Math.random() - 0.5);
+    
     if(tamanho !== '' || tamanho !== 0) {
       this.indDadosForm = true;
       formCriaSequencia.form.reset();
@@ -159,7 +162,11 @@ export class SimulacaoBubbleComponent implements OnInit {
         // se false modal não pode avançar, ordene.         
     
     if (this.verificarOrdenacao()) {
-      this.mensagemInfo = "Vetor ordenado"
+      this.mensagemInfo = "Vetor ordenado";
+      this.randArray.forEach((elm, index) => {
+        this.isCartaAberta(index);
+      });
+      this.isVetorOrdenado = true;
       console.log("vetor ordenado");
     }
     else if (this.isOrdenado()){
@@ -200,21 +207,26 @@ export class SimulacaoBubbleComponent implements OnInit {
   }
 
   selecionarCard(i): void {
+    if (this.isVetorOrdenado == true) {
+      return;
+    }
+
     if(!this.indAuxiliarCriada) {
       this.mensagemAlerta = "Antes de tentar ordernar o vator, crie uma variável auxiliar."
+      return;
     }
-    else {
-      if (this.posCardSelecionado != null && i != this.posCardSelecionado) {
-        this.isCartaAberta(this.posCardSelecionado);
-        this.isCardSelecionado = true;
-      } else {
-        this.isCardSelecionado = !this.isCardSelecionado;
-      }
+    
+    if (this.posCardSelecionado != null && i != this.posCardSelecionado) {
+      let cartaASerAberta = (i == this.direita) ? i - 1 : i + 1;
+      this.isCartaAberta(cartaASerAberta);
+      this.isCardSelecionado = true;
+    } else {
+      this.isCardSelecionado = !this.isCardSelecionado;
+    }
 
-      this.posCardSelecionado = i;
-      this.valorCardSelecionado = this.randArray[i];
-      this.isCartaSelecionada(i);
-    }
+    this.posCardSelecionado = i;
+    this.valorCardSelecionado = this.randArray[i];
+    this.isCartaSelecionada(i);
   }
 
   isCartaSelecionada(i): void {
