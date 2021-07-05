@@ -128,7 +128,7 @@ export class SimulacaoBubbleComponent implements OnInit {
       return;
     }
 
-    if(!this.isCardAuxSelecionado) {
+    if(!this.isCardSelecionado) {
       this.mensagemAtencao = "Selecione uma carta para realizar a troca";
       return;
     }
