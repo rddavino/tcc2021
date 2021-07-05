@@ -166,6 +166,11 @@ export class SimulacaoBubbleComponent implements OnInit {
     //           se retorno da função isOrdenado == true = > modal informa que ja está ordenado
     //           se retorno da função isOrdenado == false => colocar valorDaPos em aux
 
+    if(!this.isCardSelecionado) {
+      this.mensagemAtencao = "Selecione uma carta para mover para auxiliar";
+      return;
+    }
+
     if (posCardSelecionado == this.direita) {
       if(this.isOrdenado()){
         this.mensagemInfo = "Os elementos das duas posições adjacentes já estão ordenados.";
