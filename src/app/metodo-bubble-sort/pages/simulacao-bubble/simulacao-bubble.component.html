@@ -136,7 +136,7 @@
                   <small class="mb-4">Auxiliar</small>
                     <div 
                       id="cardAux" 
-                      (click) = "isCardAuxSelecionado(cardAux)"
+                      (click) = "selecionarCardAux()"
                       class="card col-12 p-2 mr-4 bg-secondary myArrayElement">
                       <h1 class="m-0 text-light">
                         <strong>{{ aux }}</strong>
@@ -150,7 +150,7 @@
           <div id="botoesBottom" class="mt-5" *ngIf="indAuxiliarCriada">
             <hr />
             <div class="d-flex ">
-              <div class="col-10">
+              <div>
                 <button
                   *ngIf="indDadosForm"
                   class="btn btn-outline-primary mr-3 myButton"
@@ -170,7 +170,7 @@
                 <button
                   *ngIf="indDadosForm"
                   class="btn btn-outline-primary mr-3 myButton"
-                  (click)="moveParaVetor()"
+                  (click)="moverParaVetor()"
                 >
                   Mover para o vetor
                 </button>

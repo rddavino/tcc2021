@@ -15,13 +15,15 @@ export class SimulacaoBubbleComponent implements OnInit {
   mensagemInfo: string;
   mensagemAlerta: string;
   mensagemAtencao: string;
-  aux: "";
+  aux = null;
   direita = 1; //guarda a posição da carta!
   esquerda = 0;
   isCardSelecionado = false;
+  isCardAuxSelecionado = false;
   posCardSelecionado:  number;
   valorCardSelecionado: number;
   isVetorOrdenado = false;
+  isTrocaRealizada: boolean;
 
   indSequenciaCriada: boolean;
   indDadosForm: boolean;
@@ -43,6 +45,7 @@ export class SimulacaoBubbleComponent implements OnInit {
   ) { 
     this.indSequenciaCriada = false;
     this.indAuxiliarCriada = false;
+    this.isTrocaRealizada = false;
     
   }
   
@@ -52,8 +55,6 @@ export class SimulacaoBubbleComponent implements OnInit {
 
 
   criarSequenciaNumerica(formCriaSequencia) {
-
-    
     let dadosForm = formCriaSequencia.form.value;    
     
     let tamanho = dadosForm.tamanho;
@@ -94,9 +95,11 @@ export class SimulacaoBubbleComponent implements OnInit {
     this.indDadosForm = false;
     this.indAuxiliarCriada = false;
     this.indSequenciaCriada = false;
-    this.aux = "";
+    this.esquerda = 0;
+    this.direita = 1;
+    this.isCardSelecionado = false;
+    this.aux = null;
     this.limparMensagem();
-
   }
 
   identify(index) {
@@ -115,12 +118,45 @@ export class SimulacaoBubbleComponent implements OnInit {
 
   realizarTroca(): void {
     //jogar valor da posição direita na esquerda
+    if(this.aux == null){
+      this.mensagemAlerta = "Se você realizar a troca antes de mover para a variável auxiliar, o valor será perdido."
+      return;
+    }
+
+    if(this.isTrocaRealizada) {
+      this.mensagemAlerta = "Troca já realizada."
+      return;
+    }
+
+    
+    if (this.posCardSelecionado == this.esquerda) {
+      this.mensagemAtencao = "Qualquer uma das posições poderia ser utilizada na troca. Aqui, para fins educativos, limitamos a troca da direita para esquerda.";
+      return;
+    }
+
     this.randArray[this.esquerda] = this.randArray[this.direita];
+    this.isTrocaRealizada = true;
   }
 
-  moveParaVetor(): void {
+  moverParaVetor(): void {
     //jogar valor da auxiliar para posição direita
+    if (this.aux == null){
+      this.mensagemAlerta = "Se você mover um valor null para o vetor, perderá o vetor original.";
+      return;
+    }
+
+    if (!this.isTrocaRealizada) {
+      this.mensagemAlerta = "Realize a troca antes de mover o valor da auxiliar para o vetor."
+      return;
+    }
+
+    if (!this.isCardAuxSelecionado) {
+      this.mensagemAlerta= "Selecione a variável auxiliar para movê-la para o vetor.";
+      return;
+    }
     this.randArray[this.direita] = this.aux;
+    this.aux = null;
+    this.selecionarCardAux();
   }
 
   moverParaAuxiliar(posCardSelecionado): void {
@@ -161,16 +197,21 @@ export class SimulacaoBubbleComponent implements OnInit {
     //                 se false => esq++ dir++
         // se false modal não pode avançar, ordene.         
     
+    if(this.aux !== null){
+      this.mensagemAlerta = "Para prosseguir, mova o valor da variável auxiliar para o vetor."
+      return;
+    }
+
     if (this.verificarOrdenacao()) {
       this.mensagemInfo = "Vetor ordenado";
       this.randArray.forEach((elm, index) => {
         this.isCartaAberta(index);
       });
       this.isVetorOrdenado = true;
-      console.log("vetor ordenado");
+      //console.log("vetor ordenado");
     }
     else if (this.isOrdenado()){
-      console.log("carta ordenada")
+      //console.log("carta ordenada")
 
       // verificar se pos dir + 1 = tam
       if (this.direita + 1 == this.randArray.length){
@@ -187,6 +228,8 @@ export class SimulacaoBubbleComponent implements OnInit {
         this.direita++;
       }
       this.abrirCartas();
+      this.isTrocaRealizada = false;
+
 
       
     }
@@ -253,5 +296,17 @@ export class SimulacaoBubbleComponent implements OnInit {
   fecharCartas(i): void {
     let element = document.getElementById(i);
     element.className = 'card col-12 p-2 mr-4 bg-info text-info arrayCard myArrayElement';
+  }
+
+  selecionarCardAux(): void {
+    let element = document.getElementById("cardAux");
+    
+    if(this.isCardAuxSelecionado){
+      element.className = 'card col-12 p-2 mr-4 bg-secondary myArrayElement';
+    } else {
+      element.className = 'cardSelecionado card col-12 p-2 mr-4';
+    }
+
+    this.isCardAuxSelecionado = !this.isCardAuxSelecionado;
   }
 }
