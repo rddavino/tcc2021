@@ -128,6 +128,10 @@ export class SimulacaoBubbleComponent implements OnInit {
       return;
     }
 
+    if(!this.isCardAuxSelecionado) {
+      this.mensagemAtencao = "Selecione uma carta para realizar a troca";
+      return;
+    }
     
     if (this.posCardSelecionado == this.esquerda) {
       this.mensagemAtencao = "Qualquer uma das posições poderia ser utilizada na troca. Aqui, para fins educativos, limitamos a troca da direita para esquerda.";
