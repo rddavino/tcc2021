@@ -42,6 +42,16 @@ body{
     cursor: pointer;
 }
 
+.auxCard {
+    background-color: #fff;
+    color: #cacaca;
+    pointer-events: none;
+}
+
+.auxCard:hover{
+    cursor: pointer;
+}
+
 .myButton {
     padding: 12px;
     padding-right: 32px;

@@ -155,6 +155,7 @@
                   *ngIf="indDadosForm"
                   class="btn btn-outline-primary mr-3 myButton"
                   (click)="moverParaAuxiliar(posCardSelecionado)"
+                  [disabled]="isVetorOrdenado"
                 >
                   Mover para variável auxiliar
                 </button>
@@ -163,6 +164,7 @@
                   *ngIf="indDadosForm"
                   class="btn btn-outline-primary mr-3 myButton"
                   (click)="realizarTroca()"
+                  [disabled]="isVetorOrdenado"
                 >
                   Realizar troca das posições
                 </button>
@@ -171,6 +173,7 @@
                   *ngIf="indDadosForm"
                   class="btn btn-outline-primary mr-3 myButton"
                   (click)="moverParaVetor()"
+                  [disabled]="isVetorOrdenado"
                 >
                   Mover para o vetor
                 </button>
@@ -181,6 +184,7 @@
                   *ngIf="indDadosForm"
                   class="btn btn-outline-success myButton"
                   (click)="avancar()"
+                  [disabled]="isVetorOrdenado"
                 >
                   Avançar
                 </button>
