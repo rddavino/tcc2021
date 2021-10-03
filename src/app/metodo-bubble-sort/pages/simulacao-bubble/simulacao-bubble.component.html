@@ -1,83 +1,73 @@
 <div class="container-fluid">
-  <div class="d-flex mt-4">
-    <div class="col-9 mr-3">
-      <div class="row">
-        <h1 class="h3 mb-0 myTitulo text-primary">BUBBLE SORT</h1>
+  <div class="mt-4">
+    <div class="main-content-component">
+      <div class="content-component-title text-secondary">
+        <h1>SIMULAÇÃO BUBBLE SORT</h1>
+        <div class="mt-1 separador-titulo bg-secondary"></div>
       </div>
-      <div class="row">
-        <div class="mt-1 separador-titulo"></div>
-      </div>
-
-      <div class="row mt-3">
-        <div class="myDescricao">
+     
+      <div>
+        <div class="content-component-descricao">
           <p>
             O bubble sort, ou ordenação por flutuação, é um algoritmo de
-            ordenação dos mais simples. A ideia é percorrer o vetor diversas
-            vezes, e a cada passagem fazer flutuar para a direita o maior
-            elemento da sequência. A complexidade desse algoritmo é de ordem
-            quadrática. Ler mais
+            ordenação dos mais simples. <strong>A ideia é percorrer o vetor diversas
+              vezes, e a cada passagem fazer flutuar para a direita o maior
+              elemento da sequência.</strong> A complexidade desse algoritmo é de ordem
+            quadrática. 
           </p>
+          <p> 
+            <i class="fas fa-exclamation-triangle text-warning text-lg mr-2"></i>
+            Se não tem certeza de como prosseguir, verifique os objetivos ou o código ao lado.
+          </p>
+          
         </div>
 
         <div id="botoesTopo">
-          <div>
+          <div class="botoesTopo">
             <button
               id="btnCriarSequencia"
-              class="btn btn-success mr-3 myButton"
+              class="btn btn-primary"
               data-target="#modal_criarSequencia"
               data-toggle="modal"
               title="Criar"
               [hidden]="indSequenciaCriada"
             >
+              <i class="fas fa-plus"></i>
               Criar sequência numérica
             </button>
 
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-start">
+              <button
+                *ngIf="indDadosForm"
+                class="btn btn-primary mr-3"
+                (click)="criarVariavelAuxiliar()"
+                [hidden]="indAuxiliarCriada"
+              >
+              <i class="fas fa-plus"></i>
+                Criar variável auxiliar
+              </button>
+
               <button
                 *ngIf="indDadosForm"
                 class="btn btn-secondary myButton mr-3"
                 (click)="limpar()"
               >
-                Recomeçar
-              </button>
-
-              <button
-                *ngIf="indDadosForm"
-                class="btn btn-success myButton"
-                (click)="criarVariavelAuxiliar()"
-                [hidden]="indAuxiliarCriada"
-              >
-                Criar variável auxiliar
+              <i class="fas fa-sync"></i>
+              Recomeçar
               </button>
             </div>
           </div>
         </div>
       </div>
 
-      <hr class="row sidebar-divider" />
-
-      <div class="text-center">
-        <div
-          class="d-flex justify-content-center align-items-center"
-          style="height: 410px"
-          *ngIf="!indDadosForm"
-        >
-          <h3>Não há nada aqui ainda... <i class="far fa-frown"></i></h3>
+      <div class="content-component-main">
+        <div class="component-main-img" *ngIf="!indDadosForm">
+          <img src="assets/img/undraw_Graduation_re_gthn.svg" alt="">
+          <p>Estamos construindo algo importante aqui...</p>
         </div>
 
-        <div *ngIf="indDadosForm" >
-         
-          <div
-            *ngIf="!mensagemInfo && !mensagemAlerta && !mensagemAtencao"
-            class="row alert alert-light fade show text-left">
-            <i class="fas fa-exclamation-triangle text-warning text-lg mr-2"></i>
-              Se não tem certeza de como prosseguir, verifique os objetivos ou 
-              <span
-                (click)="receberDica()"
-                class="text-primary font-italic dicas ml-2 mr-2"
-                >clique aqui</span> para receber dicas.
-          </div>
-
+        <div class="component-main-simulacao" *ngIf="indDadosForm" >
+                   
           <div
           *ngIf="mensagemAlerta"
             class="alert alert-warning fade show text-left" role="alert">
@@ -98,14 +88,16 @@
           
           
           <div
-          *ngIf="mensagemInfo"
-            class="alert alert-info alert-dismissible fade show text-left" role="alert">
+            *ngIf="mensagemInfo"
+            class="alert alert-info alert-dismissible fade show text-left" role="alert"
+          >
             <strong>Hey!</strong> {{ mensagemInfo }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="limparMensagem()">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
 
+          <div class="area-da-simulacao">
           <div class="d-flex align-items-center">
             <div class="d-flex col-11 m-0 p-0">
               <div
@@ -114,7 +106,7 @@
               >
                 <span *ngIf="last && !isCardSelecionado">{{abrirCartas()}}</span>
 
-                <div>
+                <div class="text-center">
                   <small class="mb-4">[ {{ i }} ]</small>
                   <div
                     [attr.id]="i"
@@ -122,9 +114,9 @@
                     class="card col-12 p-2 mr-4 bg-info text-info arrayCard myArrayElement"
                   >
                     
-                    <h1 class="m-0">
+                    <p class="m-0">
                       <strong>{{ item }}</strong>
-                    </h1>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -132,12 +124,12 @@
 
             <div class="d-flex col-11 m-0 p-0">
               <div class="col-1 m-2 ml-0 p-0" *ngIf="indAuxiliarCriada">
-                <div>
+                <div class="text-center">
                   <small class="mb-4">Auxiliar</small>
                     <div 
                       id="cardAux" 
                       (click) = "selecionarCardAux()"
-                      class="card col-12 p-2 mr-4 bg-secondary myArrayElement">
+                      class="card col-12 p-2 mr-4 bg-secondary myArrayElement pointer">
                       <h1 class="m-0 text-light">
                         <strong>{{ aux }}</strong>
                       </h1>
@@ -149,32 +141,35 @@
 
           <div id="botoesBottom" class="mt-5" *ngIf="indAuxiliarCriada">
             <hr />
-            <div class="d-flex ">
-              <div>
+            <div class="d-flex justify-content-between">
+              <div >
                 <button
                   *ngIf="indDadosForm"
-                  class="btn btn-outline-primary mr-3 myButton"
+                  class="btn btn-secondary mr-4"
                   (click)="moverParaAuxiliar(posCardSelecionado)"
                   [disabled]="isVetorOrdenado"
                 >
-                  Mover para variável auxiliar
+                <i class="fas fa-sign-out-alt"></i>
+                  Mover para auxiliar
                 </button>
 
                 <button
                   *ngIf="indDadosForm"
-                  class="btn btn-outline-primary mr-3 myButton"
+                  class="btn btn-secondary mr-4"
                   (click)="realizarTroca()"
                   [disabled]="isVetorOrdenado"
                 >
+                <i class="fas fa-exchange-alt"></i>
                   Realizar troca das posições
                 </button>
 
                 <button
                   *ngIf="indDadosForm"
-                  class="btn btn-outline-primary mr-3 myButton"
+                  class="btn btn-secondary mr-4"
                   (click)="moverParaVetor()"
                   [disabled]="isVetorOrdenado"
                 >
+                <i class="fas fa-sign-in-alt"></i>
                   Mover para o vetor
                 </button>
               </div>
@@ -182,51 +177,209 @@
               <div class="col-2">
                 <button
                   *ngIf="indDadosForm"
-                  class="btn btn-outline-success myButton"
+                  class="btn btn-outline-success mr-0"
                   (click)="avancar()"
                   [disabled]="isVetorOrdenado"
                 >
+                <i class="fas fa-forward"></i>
                   Avançar
                 </button>
               </div>
             </div>
           </div>
         </div>
+        </div>
+      </div>
+      </div>
+
+    <div class="right-sidebar">
+    
+      <div id="objetivos">
+        <ng-container>
+          <div class="right-sidebar-title text-secondary">
+            Objetivos
+            <div class="text-divider bg-secondary"></div>
+          </div>
+        </ng-container>  
+
+        <div class="right-sidebar-content">
+          <p>
+            <i class="far fa-arrow-alt-circle-right text-primary"></i> Criar sequência numérica.
+          </p>
+
+          <p class="text-sm">
+            <i class="far fa-arrow-alt-circle-right text-primary"></i> Percorrer a
+            sequência executando as operações abaixo:
+          </p>
+  
+          <div class="tab-space">
+            <p>
+              1. <strong>Compare</strong> dois elementos adjacentes. <br>
+              2. Se os elementos não estiverem em ordem, <strong>ordene.</strong><br>
+              3. Senão, <strong>avance</strong> para o próximo par.<br>
+              4. <strong>Repita</strong> a operação até que não haja mais trocas a serem feitas.</p>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="codigo">
+        <ng-container>
+          <div class="right-sidebar-title text-secondary">
+            Código
+            <div class="text-divider bg-secondary"></div>
+          </div>
+        </ng-container>     
+              
+        <div class="right-sidebar-content code">
+          <!-- linha 1 -->
+          <ng-container>
+            <span class="blue italic">void </span>
+            <span>bubble_sort</span>
+            <span>(</span>
+            <span class="blue italic">int </span>
+            <span>vetor</span>
+            <span class="blue italic">[]</span>
+            <span>,</span>
+            <span class="blue italic"> int </span>
+            <span>n</span>
+            <span>) </span>
+          </ng-container>
+          
+          <!-- linha 2 -->
+          <ng-container>
+            <span>&#123; </span>
+
+            <div class="vertical-line">
+              <div class="tab-space">
+                <span class="blue italic">int </span>
+                <span>k, j, aux;</span>
+                <br><br>
+  
+                <!-- linha 3 -->
+                <ng-container>
+                  <span class="blue italic">for</span>
+                  <span>(k</span>
+                  <span class="red"> = </span> 
+                  <span class="green">1</span>
+                  <span>; k </span>
+                  <span class="red">&lt; </span> 
+                  <span> n; k</span>
+                  <span class="red">++</span>
+                  <span>)</span>
+                  <span>&#123;</span>
+                  <br>
+
+                  <div class="vertical-line">
+                    <!-- linha 4 -->
+                    <ng-container>
+                      <div class="tab-space">
+                        <span>printf</span>
+                        <span>(</span>
+                        <span class="orange">"\n[%d] "</span>
+                        
+                        <span>, k)</span>;
+                      </div>
+                    </ng-container>
+
+
+                    <!-- linha 5 -->
+                    <ng-container>
+                      <div class="tab-space">
+                        <br>
+                        <span class="blue italic">for</span>
+                        <span>(j</span>
+                        <span class="red"> = </span> 
+                        <span class="green">0</span>
+                        <span>; j </span>
+                        <span class="red">&#60; </span> 
+                        <span>n </span>
+                        <span class="red">- </span>
+                        <span class="green">1</span>
+                        <span>; k</span>
+                        <span class="red">++</span>
+                        <span>)</span>
+                        <span>&#123;</span>
+                        <br>
+
+                        <div class="vertical-line">
+                          <!-- linha 6 -->
+                          <ng-container>
+                          <div class="tab-space">
+                            <!-- printf -->
+                            <ng-container>
+                              <span>printf</span>
+                              <span>(</span>
+                              <span class="orange">"%d, "</span>
+                              <span>, j)</span>;
+                            </ng-container>
+
+                            <!-- troca das posições -->
+                            <ng-container>
+                              <br><br>
+                              <span class="blue italic">if</span>
+                              <span>(vetor[j] </span>
+                              <span class="red">&#62; </span>
+                              <span>vetor[j </span>
+                              <span class="red">+ </span>
+                              <span class="green">1</span>
+                              <span>])</span>
+                              <span>&#123;</span>
+                              <br>
+
+                              <ng-container>
+                                <div class="vertical-line">
+                                  <div class="tab-space">
+                                    <div>
+                                      <span>aux </span>
+                                      <span class="pink">= </span>
+                                      <span>vetor[j];</span>
+                                    </div>
+
+                                    <div>
+                                      <span>vetor[j] </span>
+                                      <span class="pink">= </span>
+                                      <span>vetor[j </span>
+                                      <span class="pink">+ </span>
+                                      <span class="green">1</span>
+                                      <span>]</span>;
+                                    </div>
+
+                                    <div>
+                                      <span>vetor[j </span>
+                                      <span class="pink">+ </span>
+                                      <span class="green">1</span>
+                                      <span>]</span>
+                                      <span class="pink">+ </span>
+                                      <span>aux</span>;
+                                    </div>
+                                  </div>
+                                </div>
+                                <span>&#125;</span>
+                              </ng-container>
+                              
+                            </ng-container>   
+                          </div>
+                        </ng-container>
+                      </div>
+                      <!-- fechamemto -->
+                      <span>&#125;</span>
+                      </div>
+                    </ng-container>
+                  </div>
+                  <!-- fechamemto -->
+                  <span>&#125;</span>
+                </ng-container>
+              </div>
+            </div>
+            <!-- fechamemto -->
+            <span>&#125;</span>
+          </ng-container>
+        </div>
       </div>
     </div>
-
-    <div class="col-3">
-      <app-collapse-card-objetivo> </app-collapse-card-objetivo>
-
-      <div *ngIf="true" class="card text-dark shadow mb-4">
-        <!-- Card Header - Accordion -->
-        <a
-          href="#dicas"
-          class="d-block card-header py-3"
-          data-toggle="collapse"
-          role="button"
-          aria-expanded="true"
-          aria-controls="dicas"
-        >
-          <h6 class="m-0 font-weight-bold text-primary">Dicas</h6>
-        </a>
-        <!-- Card Content - Collapse -->
-        <div class="collapse show" id="dicas">
-          <div class="card-body">Comece clicando em uma carta para selecioná-la.</div>
-        </div>
-      </div>
-
-      <div *ngIf="true" class="card bg-gray-900 text-gray-300 shadow mb-4">
-        <!-- Card Header - Accordion -->
-        <div class="d-block card-header py-3 bg-gray-900">
-          <h6 class="m-0 font-weight-bold text-gray-300">Código</h6>
-        </div>
-        <!-- Card Content - Collapse -->
-        <div class="collapse show">
-          <div class="card-body">Código aparecerá aqui</div>
-        </div>
-      </div>
-    </div>
+    
   </div>
 </div>
 
@@ -272,7 +425,7 @@
                 placeholder="Vetor"
               />
             </div> -->
-            <div class="form-group col-6">
+            <div class="form-group col-12">
               <label for="tamanho">Tamanho do vetor:</label>
               <input
                 ngModel
@@ -280,7 +433,7 @@
                 type="tel"
                 class="form-control"
                 id="tamanho"
-                placeholder="De 1 a 9"
+                placeholder="Informe um número de 1 a 9"
                 maxlength="1"
                 
               />
