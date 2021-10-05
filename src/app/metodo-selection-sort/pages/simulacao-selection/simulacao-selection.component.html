@@ -1,1 +1,502 @@
-<p>simulacao-selection works!</p>
+<div class="container-fluid">
+  <!-- <app-navbar></app-navbar> -->
+  <div class="mt-3">
+    <div class="main-content-component">
+      <div class="content-component-title text-secondary">
+        <h1>Simulação Selection Sort</h1>
+        <div class="mt-1 separador-titulo bg-secondary"></div>
+      </div>
+
+      <div>
+        <!-- DESCRIÇÃO -->
+        <div class="content-component-descricao">
+          <p>
+            Este algoritmo é chamado ordenação por seleção, porque ela seleciona
+            repetidamente o próximo elemento menor e troca-o pelo elemento na
+            posição correta.
+          </p>
+          <p>
+            <i
+              class="fas fa-exclamation-triangle text-warning text-lg mr-2"
+            ></i>
+            Se não tem certeza de como prosseguir, verifique os objetivos ou o
+            código ao lado.
+          </p>
+        </div>
+
+        <!-- BTNS TOPO -->
+        <div id="botoesTopo">
+          <div class="botoesTopo">
+            <button
+              id="btnCriarSequencia"
+              class="btn btn-primary"
+              data-target="#modal_criarSequencia"
+              data-toggle="modal"
+              title="Criar"
+              [hidden]="indSequenciaCriada"
+            >
+              <i class="fas fa-plus"></i>
+              Criar sequência numérica
+            </button>
+
+            <div class="d-flex justify-content-start">
+              <button
+                *ngIf="indDadosForm"
+                class="btn btn-primary mr-3"
+                (click)="criarVariavelAuxiliar()"
+                [hidden]="indAuxiliarCriada"
+              >
+                <i class="fas fa-plus"></i>
+                Criar variável auxiliar
+              </button>
+
+              <button
+                *ngIf="indDadosForm"
+                class="btn btn-secondary myButton mr-3"
+                (click)="limpar()"
+              >
+                <i class="fas fa-sync"></i>
+                Recomeçar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-component-main">
+        <!-- IMG SIMULAÇÃO VAZIA -->
+        <div class="component-main-img" *ngIf="!indDadosForm">
+          <img src="assets/img/undraw_Graduation_re_gthn.svg" alt="" />
+          <p>Estamos construindo algo importante aqui...</p>
+        </div>
+      </div>
+
+      <div class="component-main-simulacao" *ngIf="indDadosForm">
+        <!-- MENSAGEM DE ALERTA -->
+        <div
+          *ngIf="mensagemAlerta"
+          class="alert alert-warning fade show text-left"
+          role="alert"
+        >
+          <strong>Hey! </strong> {{ mensagemAlerta }}
+          <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+            (click)="limparMensagem()"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <!-- MENSAGEM DE ATENÇÃO -->
+        <div
+          *ngIf="mensagemAtencao"
+          class="alert alert-danger alert-dismissible fade show text-left"
+          role="alert"
+        >
+          <strong>Atenção: </strong> {{ mensagemAtencao }}
+          <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+            (click)="limparMensagem()"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <!-- MENSAGEM INFORMATIVA -->
+        <div
+          *ngIf="mensagemInfo"
+          class="alert alert-info alert-dismissible fade show text-left"
+          role="alert"
+        >
+          <strong>Hey!</strong> {{ mensagemInfo }}
+          <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+            (click)="limparMensagem()"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <!-- ÁREA DA SIMULAÇÃO -->
+        <div class="area-da-simulacao">
+          <div class="d-flex align-items-center">
+            <div class="d-flex col-11 m-0 p-0">
+              <div
+                class="col-1 m-2 ml-0 p-0"
+                *ngFor="
+                  let item of randArray;
+                  let last = last;
+                  let i = index;
+                  trackBy: identify
+                "
+              >
+                <span *ngIf="last && !isCardSelecionado">{{
+                  abrirCartas()
+                }}</span>
+
+                <div class="text-center">
+                  <small class="mb-4">[ {{ i }} ]</small>
+                  <div
+                    [attr.id]="i"
+                    (click)="selecionarCard(i)"
+                    class="
+                      card
+                      col-12
+                      p-2
+                      mr-4
+                      bg-info
+                      text-info
+                      arrayCard
+                      myArrayElement
+                    "
+                  >
+                    <p class="m-0">
+                      <strong>{{ item }}</strong>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex col-11 m-0 p-0">
+              <div class="col-1 m-2 ml-0 p-0" *ngIf="indAuxiliarCriada">
+                <div class="text-center">
+                  <small class="mb-4">Auxiliar</small>
+                  <div
+                    id="cardAux"
+                    (click)="selecionarCardAux()"
+                    class="
+                      card
+                      col-12
+                      p-2
+                      mr-4
+                      bg-secondary
+                      myArrayElement
+                      pointer
+                    "
+                  >
+                    <h1 class="m-0 text-light">
+                      <strong>{{ aux }}</strong>
+                    </h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="botoesBottom" class="mt-5" *ngIf="indAuxiliarCriada">
+            <hr />
+            <div class="d-flex justify-content-between">
+              <div>
+                <button
+                  *ngIf="indDadosForm"
+                  class="btn btn-secondary mr-4"
+                  (click)="moverParaAuxiliar(posCardSelecionado)"
+                  [disabled]="isVetorOrdenado"
+                >
+                  <i class="fas fa-sign-out-alt"></i>
+                  Mover para auxiliar
+                </button>
+
+                <button
+                  *ngIf="indDadosForm"
+                  class="btn btn-secondary mr-4"
+                  (click)="realizarTroca()"
+                  [disabled]="isVetorOrdenado"
+                >
+                  <i class="fas fa-exchange-alt"></i>
+                  Realizar troca das posições
+                </button>
+
+                <button
+                  *ngIf="indDadosForm"
+                  class="btn btn-secondary mr-4"
+                  (click)="moverParaVetor()"
+                  [disabled]="isVetorOrdenado"
+                >
+                  <i class="fas fa-sign-in-alt"></i>
+                  Mover para o vetor
+                </button>
+              </div>
+
+              <div class="col-2">
+                <button
+                  *ngIf="indDadosForm"
+                  class="btn btn-outline-success mr-0"
+                  (click)="avancar()"
+                  [disabled]="isVetorOrdenado"
+                >
+                  <i class="fas fa-forward"></i>
+                  Avançar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIDEBAR DA DIREITA -->
+    <div class="right-sidebar">
+      <div id="objetivos">
+        <ng-container>
+          <div class="right-sidebar-title text-secondary">
+            Objetivos
+            <div class="text-divider bg-secondary"></div>
+          </div>
+        </ng-container>
+
+        <div class="right-sidebar-content">
+          <p>
+            <i class="far fa-arrow-alt-circle-right text-primary"></i> Criar
+            sequência numérica.
+          </p>
+
+          <p class="text-sm">
+            <i class="far fa-arrow-alt-circle-right text-primary"></i> Percorrer
+            a sequência executando as operações abaixo:
+          </p>
+
+          <div class="tab-space">
+            <p>
+              1. Encontre o menor elemento. Troque-o com o primeiro elemento.
+              <br />
+              2. Encontre o segundo menor cartão. Troque-o com o segundo
+              cartão<br />
+              3. Senão, <strong>avance</strong> para o próximo par.<br />
+              4. Repita encontrando o próximo menor cartão e coloque-o na
+              posição correta até que não haja mais trocas a serem feitas.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div id="codigo">
+        <ng-container>
+          <div class="right-sidebar-title text-secondary">
+            Código
+            <div class="text-divider bg-secondary"></div>
+          </div>
+        </ng-container>
+
+        <div class="right-sidebar-content code">
+          <!-- linha 1 -->
+          <ng-container>
+            <span class="blue italic">void </span>
+            <span>selection_sort</span>
+            <span>(</span>
+            <span class="blue italic">int </span>
+            <span>vetor</span>
+            <span class="blue italic">[]</span>
+            <span>,</span>
+            <span class="blue italic"> int </span>
+            <span>n</span>
+            <span>) </span>
+          </ng-container>
+
+          <!-- linha 2 -->
+          <ng-container>
+            <span>&#123; </span>
+
+            <div class="vertical-line">
+              <div class="tab-space">
+                <span class="blue italic">int </span>
+                <span>k, j, min, aux;</span>
+                <br /><br />
+
+                <!-- linha 3 -->
+                <ng-container>
+                  <span class="blue italic">for</span>
+                  <span>(k</span>
+                  <span class="red"> = </span>
+                  <span class="green">0</span>
+                  <span>; k </span>
+                  <span class="red">&lt; </span>
+                  <span> (n-1); k</span>
+                  <span class="red">++</span>
+                  <span>)</span>
+                  <span>&#123;</span>
+                  <br />
+
+                  <div class="vertical-line">
+                    <!-- linha 4 -->
+                    <ng-container>
+                      <div class="tab-space">
+                        <span>printf</span>
+                        <span>(</span>
+                        <span class="orange">"\n[%d] "</span>
+
+                        <span>, k)</span>;
+                      </div>
+                    </ng-container>
+
+                    <!-- linha 5 -->
+                    <ng-container>
+                      <div class="tab-space">
+                        <br />
+                        <span>min = i;</span>
+                        <span class="blue italic">for</span>
+                        <span>(j</span>
+                        <span class="red"> = </span>
+                        <span class="green">(i+1)</span>
+                        <span>; j </span>
+                        <span class="red">&#60; </span>
+                        <span>n </span>
+                        <span> j</span>
+                        <span class="red">++</span>
+                        <span>)</span>
+                        <span>&#123;</span>
+                        <br />
+
+                        <div class="vertical-line">
+                          <!-- linha 6 -->
+                          <ng-container>
+                            <div class="tab-space">
+                              <!-- printf -->
+                              <ng-container>
+                                <span>if</span>
+                                <span>(</span>
+                                <span class="orange">"%d, "</span>
+                                <span>, j)</span>;
+                              </ng-container>
+
+                              <!-- troca das posições -->
+                              <ng-container>
+                                <br /><br />
+                                <span class="blue italic">if</span>
+                                <span>(vetor[j] </span>
+                                <span class="red">&#62; </span>
+                                <span>vetor[min]) </span>
+                                <span>min = j</span>
+                                <span>&#123;</span>
+                                <br />
+
+                                <ng-container>
+                                  <div class="vertical-line">
+                                    <div class="tab-space">
+                                      <div>
+                                        <span>aux </span>
+                                        <span class="pink">= </span>
+                                        <span>vetor[j];</span>
+                                      </div>
+
+                                      <div>
+                                        <span>vetor[j] </span>
+                                        <span class="pink">= </span>
+                                        <span>vetor[j </span>
+                                        <span class="pink">+ </span>
+                                        <span class="green">1</span>
+                                        <span>]</span>;
+                                      </div>
+
+                                      <div>
+                                        <span>vetor[j </span>
+                                        <span class="pink">+ </span>
+                                        <span class="green">1</span>
+                                        <span>]</span>
+                                        <span class="pink">+ </span>
+                                        <span>aux</span>;
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <span>&#125;</span>
+                                </ng-container>
+                              </ng-container>
+                            </div>
+                          </ng-container>
+                        </div>
+                        <!-- fechamemto -->
+                        <span>&#125;</span>
+                      </div>
+                    </ng-container>
+                  </div>
+                  <!-- fechamemto -->
+                  <span>&#125;</span>
+                </ng-container>
+              </div>
+            </div>
+            <!-- fechamemto -->
+            <span>&#125;</span>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal criar sequencia -->
+<div id="modal_criarSequencia" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-black">CRIAR SEQUÊNCIA NUMÉRICA</h5>
+          <button
+            type="button"
+            class="close text-primary p-1"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>
+            Ao clicar em avançar, será criada uma
+            <strong>sequência numérica aleatória com números entre 0 e 9.</strong>
+          </p>
+          <div
+            *ngIf="mensagemAtencao"
+            class="alert alert-danger alert-dismissible fade show text-left"
+            role="alert"
+          >
+            <strong>Atenção: </strong> {{ mensagemAtencao }}
+            <button
+              type="button"
+              class="close"
+              data-dismiss="alert"
+              aria-label="Close"
+              (click)="limparMensagem()"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form  autocomplete="off">
+            <!-- #formCriaSequencia="ngForm" -->
+            <div class="row">
+              <div class="form-group col-12">
+                <label for="tamanho">Tamanho do vetor:</label>
+                <input
+                  ngModel
+                  name="tamanho"
+                  type="tel"
+                  class="form-control"
+                  id="tamanho"
+                  placeholder="Informe um número de 1 a 9"
+                  maxlength="1"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-primary myButton"
+            data-dismiss="modal"
+            >
+            <!-- (click)="criarSequenciaNumerica(formCriaSequencia)" -->
+            Avançar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
