@@ -7,6 +7,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&family=Roboto:wght@100;400&display=swap');
 
+
 body{
     font-family: 'Roboto', sans-serif;
     width: 100%;
@@ -204,7 +205,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .content-component-title{
-    margin-top: 42px;
+    /* margin-top: 42px; */
     margin-bottom: 8px;
 }
 
@@ -231,7 +232,6 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #1865f2;
     color: #fff;
 }
-
 
 
 .btn-secondary {
@@ -297,3 +297,17 @@ h1, h2, h3, h4, h5, h6 {
 /* .area-da-simulacao {
    
 } */
+
+.header {
+    padding: 48px 32px 24px 0px;
+    height: 50px;
+    width: 72%;
+
+}
+
+.links-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+

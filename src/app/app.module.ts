@@ -26,7 +26,7 @@ import { ExerciciosQuickComponent } from './metodo-quick-sort/pages/exercicios-q
 import { SimulacaoSelectionComponent } from './metodo-selection-sort/pages/simulacao-selection/simulacao-selection.component';
 import { AboutSelectionComponent } from './metodo-selection-sort/pages/about-selection/about-selection.component';
 import { ExerciciosSelectionComponent } from './metodo-selection-sort/pages/exercicios-selection/exercicios-selection.component';
-
+import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -78,10 +78,11 @@ const routes: Routes = [
       
     }),
     RouterModule.forRoot(routes),
+    ModalModule,
     
   ],
  
-  providers: [],
+  providers: [BsModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

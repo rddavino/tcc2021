@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SimulacaoSelectionComponent } from './pages/simulacao-selection/simulacao-selection.component';
 import { AboutSelectionComponent } from './pages/about-selection/about-selection.component';
 import { ExerciciosSelectionComponent } from './pages/exercicios-selection/exercicios-selection.component';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 
 
@@ -10,10 +11,12 @@ import { ExerciciosSelectionComponent } from './pages/exercicios-selection/exerc
   declarations: [
     SimulacaoSelectionComponent,
     AboutSelectionComponent,
-    ExerciciosSelectionComponent
+    ExerciciosSelectionComponent,
+    NavbarComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    
   ]
 })
 export class MetodoSelectionSortModule { }

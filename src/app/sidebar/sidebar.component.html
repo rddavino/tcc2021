@@ -9,7 +9,7 @@
     </a>
 
     <!-- Divider -->
-    <hr class="sidebar-divider my-0">
+    <hr class="sidebar-divider ">
 
     <!-- Nav Item - Dashboard -->
     <!-- <li class="nav-item">
@@ -38,11 +38,12 @@
                 <!-- <h6 class="collapse-header">Custom Components:</h6> -->
                 <a class="collapse-item" routerLink="about-bubble-sort">Sobre o método</a>
                 <a class="collapse-item" routerLink="simulacao-bubble">Simulação</a>
-                <a class="collapse-item" routerLink="exercicios-bubble-sort">Exercícios</a>
+                <!-- <a class="collapse-item" routerLink="exercicios-bubble-sort">Exercícios</a> -->
 
             </div>
         </div>
     </li>
+
 
     <!-- Nav Item - Selection Sort -->
     <li class="nav-item">
@@ -57,14 +58,14 @@
                 <!-- <h6 class="collapse-header">Custom Utilities:</h6> -->
                 <a class="collapse-item" routerLink="about-selection-sort">Sobre o método</a>
                 <a class="collapse-item" routerLink="simulacao-selection">Simulação</a>
-                <a class="collapse-item" routerLink="exercicios-selection-sort">Exercícios</a>
+                <!-- <a class="collapse-item" routerLink="exercicios-selection-sort">Exercícios</a> -->
 
             </div>
         </div>
     </li>
 
      <!-- Nav Item - Insertion Sort -->
-     <li class="nav-item">
+    <li class="nav-item" *ngIf="false">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#insertionSort"
           aria-expanded="true" aria-controls="insertionSort">
           <!-- <i class="fas fa-sign-in-alt"></i> -->
@@ -80,10 +81,10 @@
 
           </div>
       </div>
-  </li>
+    </li>
 
    <!-- Nav Item - Quick Sort -->
-   <li class="nav-item">
+    <li class="nav-item" *ngIf="false">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#quickSort"
         aria-expanded="true" aria-controls="quickSort">
         <!-- <i class="fas fa-compress-alt"></i> -->
@@ -99,7 +100,9 @@
 
         </div>
     </div>
-</li>
+    </li>
+
+   
 
    
 

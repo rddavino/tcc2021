@@ -11,7 +11,7 @@ import { ExerciciosBubbleSortComponent } from './pages/exercicios-bubble-sort/ex
     ExerciciosBubbleSortComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
   ]
 })
 export class MetodoBubbleSortModule { }
