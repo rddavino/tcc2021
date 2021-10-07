@@ -19,7 +19,7 @@
           </p>
           <p> 
             <i class="fas fa-exclamation-triangle text-warning text-lg mr-2"></i>
-            Se não tem certeza de como prosseguir, verifique os objetivos ou o código ao lado.
+            Se não tem certeza de como prosseguir, verifique os objetivos ou o código.
           </p>
          
         </div>
@@ -71,7 +71,7 @@
         <div class="component-main-simulacao" *ngIf="indDadosForm" >
                    
           <div
-          *ngIf="mensagemAlerta"
+            *ngIf="mensagemAlerta"
             class="alert alert-warning fade show text-left" role="alert">
             <strong>Hey! </strong> {{ mensagemAlerta }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="limparMensagem()">
@@ -87,8 +87,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          
-          
+                    
           <div
             *ngIf="mensagemInfo"
             class="alert alert-info alert-dismissible fade show text-left" role="alert"
