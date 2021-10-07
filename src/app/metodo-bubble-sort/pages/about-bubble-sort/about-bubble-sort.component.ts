@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutBubbleSortComponent implements OnInit {
 
-  nomeMetodo = "Bubble Sort"
+  nomeMetodo = "Bubble Sort";
+  
   constructor() { }
 
   ngOnInit(): void {

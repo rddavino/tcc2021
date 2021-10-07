@@ -12,12 +12,12 @@ import { NavbarComponent } from '../navbar/navbar.component';
     SimulacaoSelectionComponent,
     AboutSelectionComponent,
     ExerciciosSelectionComponent,
-    NavbarComponent
   ],
   imports: [
     CommonModule,
     
     
-  ]
+  ],
+  
 })
 export class MetodoSelectionSortModule { }

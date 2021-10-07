@@ -58,6 +58,8 @@ const routes: Routes = [
     WelcomeCardComponent,
     SimulacaoBubbleComponent,
     AboutBubbleSortComponent,
+    SimulacaoSelectionComponent,
+    AboutSelectionComponent,
     ExerciciosBubbleSortComponent,
     HomeComponent,
     FooterComponent,
