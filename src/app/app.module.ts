@@ -77,6 +77,8 @@ const routes: Routes = [
       easeTime: 300,
       progressBar: true,
       progressAnimation: 'decreasing',
+      tapToDismiss: true,
+      closeButton: true	
       
     }),
     RouterModule.forRoot(routes),

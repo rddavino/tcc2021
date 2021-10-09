@@ -67,7 +67,28 @@ h1, h2, h3, h4, h5, h6 {
     color: rgb(197, 1, 1);
 }
 
+.toast-container .ngx-toastr {
+    
+    width: 550px !important;
+   
+}
 
+.toast-close-button {
+    padding-right: 5px !important;
+}
+
+.toast-warning {
+    background-color: #e2bb0b !important;
+}    
+
+.toast-info {
+    background-color: #6e30d3!important;
+} 
+
+.toast-errror {
+    background-color: #9c1818 !important;
+    color: #ffffff !important;
+}  
 
 
 
@@ -360,8 +381,8 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 24px;
 }
 .mensagem_img img {
-    width: 80%;
-    height: 80%;
+    width: 45%;
+    height: 45%;
 }
 
 .mensagem_content {
@@ -369,7 +390,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .mensagem_texto_titulo {
-    
     font-weight: bolder;
 }
 
