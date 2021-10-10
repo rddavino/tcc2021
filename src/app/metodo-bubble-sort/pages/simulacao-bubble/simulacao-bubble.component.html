@@ -410,10 +410,9 @@
         </div>
         <div class="modal-body">
           <p>
-            Ao clicar em avançar, será criada uma
-            <strong
-              >sequência numérica aleatória com números entre 0 e 9.</strong
-            >
+            Vamos criar uma sequência com números aleatórios de 0 a 9.
+            <strong>Você precisa apenas informar o tamanho da sequência.</strong
+            > 
           </p>
           <div
             *ngIf="mensagemAtencao"
@@ -433,20 +432,8 @@
           </div>
           <form #formCriaSequencia="ngForm" autocomplete="off">
             <div class="row">
-              <!-- <div class="form-group col-6">
-              <label for="sequencia">Nome do vetor:</label>
-              <input
-                ngModel
-                name="vetor"
-                type="tel"
-                class="form-control"
-                id="sequencia"
-                aria-describedby="emailHelp"
-                placeholder="Vetor"
-              />
-            </div> -->
               <div class="form-group col-12">
-                <label for="tamanho">Tamanho do vetor:</label>
+                <label for="tamanho">Tamanho do vetor (sequência):</label>
                 <input
                   ngModel
                   name="tamanho"
