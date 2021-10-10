@@ -290,11 +290,11 @@ h1, h2, h3, h4, h5, h6 {
     color: #1865f2;
 }
 
-.component-main-simulacao {
 
+.component-main-simulacao {
     width: inherit;
-    height: 400px;
-    margin-top: 50px;
+    height: 300px;
+    margin-top: 24px;
     background-color: transparent;
 }
 
@@ -315,10 +315,6 @@ h1, h2, h3, h4, h5, h6 {
 .sidebar hr.sidebar-divider {
     margin-bottom: 32px;
 }    
-
-/* .area-da-simulacao {
-   
-} */
 
 .header {
     padding: 48px 32px 24px 0px;
@@ -406,7 +402,125 @@ h1, h2, h3, h4, h5, h6 {
     display: none;
 }
 
+.rotate {
+    transform: rotate(180deg);
+}
 
+.botoesBottom {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 32px;
+}
+
+.botoesBottom_Item {
+    margin-left: 8px;
+}
+
+.botoesBottom_Item:first-child{
+    margin-left: 0px;
+}
+
+.btn-outline {
+    border: 1px solid #464646;
+    color: #464646;
+}
+
+.btn-outline:hover {
+background-color: #464646;
+color: white;
+}
+
+/* .area-da-simulacao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+ } */
+
+/* .espacamento_card {
+    margin-right: 12px;
+    width: 20%;;
+} */
+
+/* .area-da-simulacao_array {
+    display: flex;
+} */
+/* .espacamento_card_aux {
+    width: 80px
+} */
+
+/*nova area de simulação*/
+.cards_areaSimulacao{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.array_areaSimulacao{
+    display: flex;
+    width: 95%;
+}
+
+.aux_areaSimulacao{
+    /* background-color: green; */
+}
+
+.elementoEposicao{
+    width: 8%;
+    text-align: center;
+    margin-right: 12px;
+}
+
+.elementoEposicao_aux{
+    text-align: center;
+}
+
+.elementoVetor{
+    height: 100px;
+    border-radius: 3px;
+    padding:20px;
+    background-color:#36b9cc;
+    color: #36b9cc;
+    box-shadow: 1px 1px 6px #c9c9c9;
+    font-size: 4em;
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.elementoAuxiliar {
+    background-color:#000;
+    color: #fff;
+}
+
+.elementoVetorAberto {
+    border: 1px solid #36b9cc;
+    background-color: #fff;
+    color: #36b9cc;
+    cursor: pointer;
+}
+
+.elementoVetorSelecionado {
+    background-color: #e2bb0b;
+    color: #fff;
+    box-shadow: none;
+}
+
+@media screen and (max-width: 1450px) {
+    .botoesBottom_Item {
+        margin: 0px 12px 12px 0px;
+    }
+
+    .botoesBottom_Item_aux {
+        margin-right: 0px;
+    }
+
+    .botoesBottom_main{
+        width: 60%;
+    }
+}
 
 @media screen and (max-width: 1354px) {
     .medio{
@@ -433,6 +547,21 @@ h1, h2, h3, h4, h5, h6 {
     .links-header {
         justify-content: space-between;
     }
+
+    .botoesBottom {
+        background-color: #ebebeb;
+        padding: 20px 20px 0px 20px;
+        position: fixed;
+        bottom: 0px;
+        left: 0;
+        
+    }
+
+    /* .botoesBottom_Item {
+        margin: 0px 12px 12px 0px;
+    
+    } */
+    
     
 }
 
@@ -445,4 +574,6 @@ h1, h2, h3, h4, h5, h6 {
         display: none !important;
     }
 
+   
+  
 }

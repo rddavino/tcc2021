@@ -323,12 +323,14 @@ export class SimulacaoBubbleComponent implements OnInit {
 
   isCartaSelecionada(i): void {
     let element = document.getElementById(i);
-    element.className = 'cardSelecionado card col-12 p-2 mr-4';
+    element.className = 'elementoVetor elementoVetorSelecionado';
   }
 
   isCartaAberta(i): void {
     let element = document.getElementById(i);
-    element.className = 'cardAberto';
+    // element.className = 'cardAberto';
+    element.className = 'elementoVetor elementoVetorAberto';
+
   }
  
   limparMensagem(): void{
@@ -344,16 +346,18 @@ export class SimulacaoBubbleComponent implements OnInit {
   
   fecharCartas(i): void {
     let element = document.getElementById(i);
-    element.className = 'card col-12 p-2 mr-4 bg-info text-info arrayCard myArrayElement';
+    // element.className = 'card col-12 p-2 mr-4 bg-info text-info arrayCard myArrayElement';
+    element.className = 'elementoVetor';
+
   }
 
   selecionarCardAux(): void {
     let element = document.getElementById("cardAux");
     
     if(this.isCardAuxSelecionado){
-      element.className = 'card col-12 p-2 mr-4 bg-secondary myArrayElement';
+      element.className = 'elementoVetor elementoAuxiliar';
     } else {
-      element.className = 'cardSelecionado card col-12 p-2 mr-4';
+      element.className = 'elementoVetor elementoVetorSelecionado';
     }
 
     this.isCardAuxSelecionado = !this.isCardAuxSelecionado;
