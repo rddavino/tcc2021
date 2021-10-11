@@ -15,6 +15,7 @@ import { ModalVetorOrdenadoComponent } from './components/modal-vetor-ordenado/m
     CollapseCardObjetivoComponent,
     ModalCriarSequenciaComponent,
     ModalVetorOrdenadoComponent,
+
   ],
   imports: [
     CommonModule
@@ -24,6 +25,7 @@ import { ModalVetorOrdenadoComponent } from './components/modal-vetor-ordenado/m
     CardHomeComponent,
     CardCartaComponent,
     CollapseCardObjetivoComponent,
+    ModalVetorOrdenadoComponent,
   ]
 })
 export class SharedModule { }

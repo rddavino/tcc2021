@@ -82,7 +82,7 @@ const routes: Routes = [
       
     }),
     RouterModule.forRoot(routes),
-    ModalModule,
+    ModalModule.forRoot(),
     
   ],
  

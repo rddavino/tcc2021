@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+import { ModalVetorOrdenadoComponent } from 'src/app/shared/components/modal-vetor-ordenado/modal-vetor-ordenado.component';
 
 @Component({
   selector: 'app-simulacao-bubble',
@@ -8,6 +9,8 @@ import { connectableObservableDescriptor } from 'rxjs/internal/observable/Connec
   styleUrls: ['./simulacao-bubble.component.css']
 })
 export class SimulacaoBubbleComponent implements OnInit {
+
+  @ViewChild("modalVetorOrdenado", {static: false}) modalVetorOrdenado: ModalVetorOrdenadoComponent;
 
   randArray: any[];
   collapseCardTitulo = "Objetivos";
@@ -252,6 +255,9 @@ export class SimulacaoBubbleComponent implements OnInit {
         this.isCartaAberta(index);
       });
       this.isVetorOrdenado = true;
+      console.log("chegou aqui sim cleiton");
+      this.modalVetorOrdenado.abrirModal();
+
       //console.log("vetor ordenado");
     }
     else if (this.isOrdenado()){
@@ -361,5 +367,9 @@ export class SimulacaoBubbleComponent implements OnInit {
     }
 
     this.isCardAuxSelecionado = !this.isCardAuxSelecionado;
+  }
+
+  abrirModal() {
+    this.modalVetorOrdenado.abrirModal();
   }
 }
