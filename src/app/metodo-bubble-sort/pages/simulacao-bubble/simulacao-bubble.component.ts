@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { BsModalRef, BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { ModalVetorOrdenadoComponent } from 'src/app/shared/components/modal-vetor-ordenado/modal-vetor-ordenado.component';
@@ -10,11 +11,15 @@ import { ModalVetorOrdenadoComponent } from 'src/app/shared/components/modal-vet
 })
 export class SimulacaoBubbleComponent implements OnInit {
 
-  @ViewChild("modalVetorOrdenado", {static: false}) modalVetorOrdenado: ModalVetorOrdenadoComponent;
+  @ViewChild('modalTeste', { static: false }) modalTeste: ModalDirective;
+
+
+
 
   randArray: any[];
   collapseCardTitulo = "Objetivos";
-  
+  modalRef: BsModalRef;
+
   mensagemInfo: string;
   mensagemAlerta: string;
   mensagemAtencao: string;
@@ -23,7 +28,7 @@ export class SimulacaoBubbleComponent implements OnInit {
   esquerda = 0;
   isCardSelecionado = false;
   isCardAuxSelecionado = false;
-  posCardSelecionado:  number;
+  posCardSelecionado: number;
   valorCardSelecionado: number;
   isVetorOrdenado = false;
   isTrocaRealizada: boolean;
@@ -44,31 +49,32 @@ export class SimulacaoBubbleComponent implements OnInit {
   ];
 
   constructor(
-    private toastr: ToastrService
-  ) { 
+    private toastr: ToastrService,
+    private modalService: BsModalService
+  ) {
     this.indSequenciaCriada = false;
     this.indAuxiliarCriada = false;
     this.isTrocaRealizada = false;
-    
+
   }
-  
+
   ngOnInit(): void {
-   
+
   }
 
 
   criarSequenciaNumerica(formCriaSequencia) {
-    let dadosForm = formCriaSequencia.form.value;    
-    
+    let dadosForm = formCriaSequencia.form.value;
+
     let tamanho = dadosForm.tamanho;
     this.randArray = this.randomArray(Number(tamanho), 9);
     this.randArray.sort(() => Math.random() - 0.5);
-    
-    if(tamanho !== '' || tamanho !== 0) {
+
+    if (tamanho !== '' || tamanho !== 0) {
       this.indDadosForm = true;
       formCriaSequencia.form.reset();
       this.indSequenciaCriada = true;
-     
+
       return this.randArray;
 
     } else {
@@ -76,6 +82,7 @@ export class SimulacaoBubbleComponent implements OnInit {
       this.mensagemAtencao = "O vetor deve ter no mínimo 3 elementos."
       this.toastr.error(this.mensagemAtencao);
     }
+
   }
 
   randomArray(length, max) {
@@ -109,7 +116,7 @@ export class SimulacaoBubbleComponent implements OnInit {
 
   identify(index) {
     return index;
- }
+  }
 
   isOrdenado(): boolean {
     //comparar pos esquerda e direita
@@ -123,7 +130,7 @@ export class SimulacaoBubbleComponent implements OnInit {
 
   realizarTroca(): void {
     //jogar valor da posição direita na esquerda
-    if(this.aux == null){
+    if (this.aux == null) {
       this.limparMensagem();
       this.mensagemAlerta = "Se você realizar a troca antes de mover para a variável auxiliar, o valor será perdido."
       this.toastr.warning(this.mensagemAlerta);
@@ -131,20 +138,20 @@ export class SimulacaoBubbleComponent implements OnInit {
       return;
     }
 
-    if(this.isTrocaRealizada) {
+    if (this.isTrocaRealizada) {
       this.limparMensagem();
       this.mensagemAlerta = "Troca já realizada."
       this.toastr.warning(this.mensagemAlerta);
       return;
     }
 
-    if(!this.isCardSelecionado) {
+    if (!this.isCardSelecionado) {
       this.limparMensagem();
       this.mensagemAtencao = "Selecione uma carta para realizar a troca";
       this.toastr.error(this.mensagemAtencao);
       return;
     }
-    
+
     if (this.posCardSelecionado == this.esquerda) {
       this.limparMensagem();
       this.mensagemAtencao = "Qualquer uma das posições poderia ser utilizada na troca. Aqui, para fins educativos, limitamos a troca da direita para esquerda.";
@@ -158,7 +165,7 @@ export class SimulacaoBubbleComponent implements OnInit {
 
   moverParaVetor(): void {
     //jogar valor da auxiliar para posição direita
-    if (this.aux == null){
+    if (this.aux == null) {
       this.limparMensagem();
       this.mensagemAlerta = "Se você mover um valor null para o vetor, perderá o vetor original.";
       this.toastr.warning(this.mensagemAlerta);
@@ -175,7 +182,7 @@ export class SimulacaoBubbleComponent implements OnInit {
 
     if (!this.isCardAuxSelecionado) {
       this.limparMensagem();
-      this.mensagemAlerta= "Selecione a variável auxiliar para movê-la para o vetor.";
+      this.mensagemAlerta = "Selecione a variável auxiliar para movê-la para o vetor.";
       this.toastr.warning(this.mensagemAlerta);
 
       return;
@@ -192,7 +199,7 @@ export class SimulacaoBubbleComponent implements OnInit {
     //           se retorno da função isOrdenado == true = > modal informa que ja está ordenado
     //           se retorno da função isOrdenado == false => colocar valorDaPos em aux
 
-    if(!this.isCardSelecionado) {
+    if (!this.isCardSelecionado) {
       this.limparMensagem();
       this.mensagemAtencao = "Selecione uma carta para mover para auxiliar";
       this.toastr.error(this.mensagemAtencao);
@@ -201,13 +208,13 @@ export class SimulacaoBubbleComponent implements OnInit {
     }
 
     if (posCardSelecionado == this.direita) {
-      if(this.isOrdenado()){
+      if (this.isOrdenado()) {
         this.limparMensagem();
         this.mensagemInfo = "Os elementos das duas posições adjacentes já estão ordenados.";
         this.toastr.info(this.mensagemInfo);
 
       }
-      else{
+      else {
         this.limparMensagem();
         this.mensagemAtencao = "Qualquer uma das posições poderia ter o seu valor movido para a variável auxiliar. Aqui, para fins educativos, limitamos a movimentação somente do valor da posição à esquerda.";
         this.toastr.error(this.mensagemAtencao);
@@ -238,9 +245,9 @@ export class SimulacaoBubbleComponent implements OnInit {
     //     se true => verificar se pos dir + 1 = tam
     //                 se true => esq = 0, dir = 1
     //                 se false => esq++ dir++
-        // se false modal não pode avançar, ordene.         
-    
-    if(this.aux !== null){
+    // se false modal não pode avançar, ordene.         
+
+    if (this.aux !== null) {
       this.limparMensagem();
       this.mensagemAlerta = "Para prosseguir, mova o valor da variável auxiliar para o vetor."
       this.toastr.warning(this.mensagemAlerta);
@@ -249,22 +256,21 @@ export class SimulacaoBubbleComponent implements OnInit {
 
     if (this.verificarOrdenacao()) {
       this.limparMensagem();
-      this.mensagemInfo = "Vetor ordenado";
-      this.toastr.info(this.mensagemInfo);
+      //this.mensagemInfo = "Vetor ordenado";
+      //this.toastr.info(this.mensagemInfo);
       this.randArray.forEach((elm, index) => {
         this.isCartaAberta(index);
       });
       this.isVetorOrdenado = true;
-      console.log("chegou aqui sim cleiton");
-      this.modalVetorOrdenado.abrirModal();
+      this.modalTeste.show();
 
       //console.log("vetor ordenado");
     }
-    else if (this.isOrdenado()){
+    else if (this.isOrdenado()) {
       //console.log("carta ordenada")
 
       // verificar se pos dir + 1 = tam
-      if (this.direita + 1 == this.randArray.length){
+      if (this.direita + 1 == this.randArray.length) {
         this.fecharCartas(this.esquerda)
         this.fecharCartas(this.direita)
 
@@ -272,7 +278,7 @@ export class SimulacaoBubbleComponent implements OnInit {
         this.direita = 1;
 
       }
-      else{
+      else {
         this.fecharCartas(this.esquerda);
         this.esquerda++;
         this.direita++;
@@ -281,13 +287,13 @@ export class SimulacaoBubbleComponent implements OnInit {
       this.isTrocaRealizada = false;
 
 
-      
+
     }
     else {
       this.limparMensagem();
       this.mensagemInfo = "Não é possível avançar ainda pois os elementos não estão ordenados!";
       this.toastr.info(this.mensagemInfo);
-      
+
     }
   }
 
@@ -307,13 +313,13 @@ export class SimulacaoBubbleComponent implements OnInit {
       return;
     }
 
-    if(!this.indAuxiliarCriada) {
+    if (!this.indAuxiliarCriada) {
       this.limparMensagem();
       this.mensagemAlerta = "Antes de tentar ordernar o vator, crie uma variável auxiliar."
       this.toastr.warning(this.mensagemAlerta);
       return;
     }
-    
+
     if (this.posCardSelecionado != null && i != this.posCardSelecionado) {
       let cartaASerAberta = (i == this.direita) ? i - 1 : i + 1;
       this.isCartaAberta(cartaASerAberta);
@@ -338,8 +344,8 @@ export class SimulacaoBubbleComponent implements OnInit {
     element.className = 'elementoVetor elementoVetorAberto';
 
   }
- 
-  limparMensagem(): void{
+
+  limparMensagem(): void {
     this.mensagemInfo = "";
     this.mensagemAlerta = "";
     this.mensagemAtencao = "";
@@ -349,7 +355,7 @@ export class SimulacaoBubbleComponent implements OnInit {
     this.isCartaAberta(this.esquerda);
     this.isCartaAberta(this.direita);
   }
-  
+
   fecharCartas(i): void {
     let element = document.getElementById(i);
     // element.className = 'card col-12 p-2 mr-4 bg-info text-info arrayCard myArrayElement';
@@ -359,8 +365,8 @@ export class SimulacaoBubbleComponent implements OnInit {
 
   selecionarCardAux(): void {
     let element = document.getElementById("cardAux");
-    
-    if(this.isCardAuxSelecionado){
+
+    if (this.isCardAuxSelecionado) {
       element.className = 'elementoVetor elementoAuxiliar';
     } else {
       element.className = 'elementoVetor elementoVetorSelecionado';
@@ -369,7 +375,6 @@ export class SimulacaoBubbleComponent implements OnInit {
     this.isCardAuxSelecionado = !this.isCardAuxSelecionado;
   }
 
-  abrirModal() {
-    this.modalVetorOrdenado.abrirModal();
-  }
+
+
 }

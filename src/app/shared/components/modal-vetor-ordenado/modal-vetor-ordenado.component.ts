@@ -9,7 +9,7 @@ import { BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
 export class ModalVetorOrdenadoComponent implements OnInit, AfterViewInit {
 
   // @ViewChild(ModalDirective) modal: ModalDirective;
-  @ViewChild("modal", {static: false}) modal: ModalDirective;
+  @ViewChild("modalVetorOrdenado", {static: false}) modalVetorOrdenado: ModalDirective;
 
 
   constructor(private modalService: BsModalService) { }
@@ -21,12 +21,11 @@ export class ModalVetorOrdenadoComponent implements OnInit, AfterViewInit {
   }
 
   abrirModal(){
-    // this.modal.show()
-    this.modalService.show(ModalVetorOrdenadoComponent);
+    this.modalVetorOrdenado.show()
   }
   
   fecharModal() {
-    this.modal.hide();
+    this.modalVetorOrdenado.hide();
   }
 
   redirecionarParaExercicio() {
