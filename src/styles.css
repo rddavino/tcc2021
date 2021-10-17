@@ -469,10 +469,20 @@ color: white;
     width: 8%;
     text-align: center;
     margin-right: 12px;
+    flex-basis: 70px;
+
 }
 
 .elementoEposicao_aux{
     text-align: center;
+    flex-basis: 70px;
+
+}
+
+.aux_areaSimulacao {
+    flex-basis: 70px;
+    width: 8%;
+
 }
 
 .elementoVetor{
@@ -482,7 +492,7 @@ color: white;
     background-color:#36b9cc;
     color: #36b9cc;
     box-shadow: 1px 1px 6px #c9c9c9;
-    font-size: 4em;
+    font-size: 3em;
     font-weight: bold;
 
     display: flex;
