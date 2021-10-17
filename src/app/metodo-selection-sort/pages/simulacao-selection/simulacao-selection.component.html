@@ -51,6 +51,16 @@
               </button>
 
               <button
+              *ngIf="indDadosForm"
+              class="btn btn-primary mr-3"
+              (click)="criarVariavelMin()"
+              [hidden]="indMinCriada"
+            >
+              <i class="fas fa-plus"></i>
+              Criar variável com menor valor
+            </button>
+
+              <button
                 *ngIf="indDadosForm"
                 class="btn btn-secondary myButton mr-3"
                 (click)="limpar()"
@@ -72,66 +82,14 @@
       </div>
 
       <div class="component-main-simulacao" *ngIf="indDadosForm">
-        <!-- MENSAGEM DE ALERTA -->
-        <!-- <div
-          *ngIf="mensagemAlerta"
-          class="alert alert-warning fade show text-left"
-          role="alert"
-        >
-          <strong>Hey! </strong> {{ mensagemAlerta }}
-          <button
-            type="button"
-            class="close"
-            data-dismiss="alert"
-            aria-label="Close"
-            (click)="limparMensagem()"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div> -->
-
-        <!-- MENSAGEM DE ATENÇÃO -->
-        <!-- <div
-          *ngIf="mensagemAtencao"
-          class="alert alert-danger alert-dismissible fade show text-left"
-          role="alert"
-        >
-          <strong>Atenção: </strong> {{ mensagemAtencao }}
-          <button
-            type="button"
-            class="close"
-            data-dismiss="alert"
-            aria-label="Close"
-            (click)="limparMensagem()"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div> -->
-
-        <!-- MENSAGEM INFORMATIVA -->
-        <!-- <div
-          *ngIf="mensagemInfo"
-          class="alert alert-info alert-dismissible fade show text-left"
-          role="alert"
-        >
-          <strong>Hey!</strong> {{ mensagemInfo }}
-          <button
-            type="button"
-            class="close"
-            data-dismiss="alert"
-            aria-label="Close"
-            (click)="limparMensagem()"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div> -->
+      
 
         <!-- ÁREA DA SIMULAÇÃO -->
-        <div class="area-da-simulacao">
-          <div class="d-flex align-items-center">
-            <div class="d-flex col-11 m-0 p-0">
-              <div
-                class="col-1 m-2 ml-0 p-0"
+        <div id="areaSimulacao">
+          <div class="cards_areaSimulacao">
+            <!-- array -->
+            <div class="array_areaSimulacao">
+              <ng-container
                 *ngFor="
                   let item of randArray;
                   let last = last;
@@ -143,103 +101,120 @@
                   abrirCartas()
                 }}</span>
 
-                <div class="text-center">
-                  <small class="mb-4">[ {{ i }} ]</small>
+                <div class="elementoEposicao">
+                  <small>[ {{ i }} ]</small>
                   <div
                     [attr.id]="i"
                     (click)="selecionarCard(i)"
-                    class="
-                      card
-                      col-12
-                      p-2
-                      mr-4
-                      bg-info
-                      text-info
-                      arrayCard
-                      myArrayElement
-                    "
+                    class="elementoVetor"
                   >
-                    <p class="m-0">
-                      <strong>{{ item }}</strong>
-                    </p>
+                    <!-- valor do elemento na sequencia -->
+                    {{ item }}
                   </div>
                 </div>
+              </ng-container>
+            </div>
+
+            <div class="minAux_areaSimulacao">
+              <div class="min_areaSimulacao">
+                <ng-container *ngIf="indMinCriada">
+                  <div class="elementoEposicao_aux">
+                    <small>Menor</small>
+                    <!-- (click)="selecionarCardAux()" -->
+                    <div
+                      id="cardAux"
+                      class="elementoVetor elementoAuxiliar"
+                      >
+                      {{ min }}
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+  
+              <div class="aux_areaSimulacao">
+                <ng-container *ngIf="indAuxiliarCriada">
+                  <div class="elementoEposicao_aux">
+                    <small>Auxiliar</small>
+                    <div
+                      id="cardAux"
+                      (click)="selecionarCardAux()"
+                      class="elementoVetor elementoAuxiliar"
+                    >
+                      {{ aux }}
+                    </div>
+                  </div>
+                </ng-container>
               </div>
             </div>
 
-            <div class="d-flex col-11 m-0 p-0">
-              <div class="col-1 m-2 ml-0 p-0" *ngIf="indAuxiliarCriada">
-                <div class="text-center">
-                  <small class="mb-4">Auxiliar</small>
-                  <div
-                    id="cardAux"
-                    (click)="selecionarCardAux()"
-                    class="
-                      card
-                      col-12
-                      p-2
-                      mr-4
-                      bg-secondary
-                      myArrayElement
-                      pointer
-                    "
-                  >
-                    <h1 class="m-0 text-light">
-                      <strong>{{ aux }}</strong>
-                    </h1>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
 
-          <div id="botoesBottom" class="mt-5" *ngIf="indAuxiliarCriada">
-            <hr />
-            <div class="d-flex justify-content-between">
-              <div>
-                <button
-                  *ngIf="indDadosForm"
-                  class="btn btn-secondary mr-4"
-                  (click)="moverParaAuxiliar(posCardSelecionado)"
-                  [disabled]="isVetorOrdenado"
-                >
-                  <i class="fas fa-sign-out-alt"></i>
-                  Mover para auxiliar
-                </button>
+          <!-- botoes de ação -->
+          <div
+            id="botoesBottom"
+            *ngIf="indAuxiliarCriada"
+            class="botoesBottom"
+          >
+            <div class="botoesBottom_main">
+              <button
+                *ngIf="indDadosForm"
+                class="botoesBottom_Item btn btn-secondary"
+                (click)="moverParaAuxiliar(posCardSelecionado)"
+                [disabled]="isVetorOrdenado"
+              >
+                <i class="fas fa-sign-out-alt"></i>
+                Mover p/ aux.
+              </button>
 
-                <button
-                  *ngIf="indDadosForm"
-                  class="btn btn-secondary mr-4"
-                  (click)="realizarTroca()"
-                  [disabled]="isVetorOrdenado"
-                >
-                  <i class="fas fa-exchange-alt"></i>
-                  Realizar troca das posições
-                </button>
+              <button
+                *ngIf="indDadosForm"
+                class="botoesBottom_Item btn btn-secondary"
+                (click)="moverParaAuxiliar(posCardSelecionado)"
+                [disabled]="isVetorOrdenado"
+              >
+                <i class="fas fa-sign-out-alt"></i>
+                Mover p/ menor
+              </button>
 
-                <button
-                  *ngIf="indDadosForm"
-                  class="btn btn-secondary mr-4"
-                  (click)="moverParaVetor()"
-                  [disabled]="isVetorOrdenado"
-                >
-                  <i class="fas fa-sign-in-alt"></i>
-                  Mover para o vetor
-                </button>
-              </div>
+              <button
+                *ngIf="indDadosForm"
+                class="botoesBottom_Item btn btn-secondary"
+                (click)="realizarTroca()"
+                [disabled]="isVetorOrdenado"
+              >
+                <i class="fas fa-exchange-alt"></i>
+                Trocar posições
+              </button>
 
-              <div class="col-2">
-                <button
-                  *ngIf="indDadosForm"
-                  class="btn btn-outline-success mr-0"
-                  (click)="avancar()"
-                  [disabled]="isVetorOrdenado"
-                >
-                  <i class="fas fa-forward"></i>
-                  Avançar
-                </button>
-              </div>
+              <button
+                *ngIf="indDadosForm"
+                class="botoesBottom_Item btn btn-secondary"
+                (click)="moverParaVetor()"
+                [disabled]="isVetorOrdenado"
+              >
+                <i class="fas fa-sign-in-alt rotate"></i>
+                Mover p/ vetor
+              </button>
+
+              <button
+                *ngIf="indDadosForm"
+                class="botoesBottom_Item btn btn-outline-success"
+                (click)="avancar()"
+                [disabled]="isVetorOrdenado"
+              >
+                <i class="fas fa-forward"></i>
+                Avançar
+              </button>
             </div>
+
+            <button
+              *ngIf="indDadosForm"
+              class="botoesBottom_Item botoesBottom_Item_aux btn btn-outline"
+              (click)="limpar()"
+            >
+              <i class="fas fa-sync"></i>
+              Recomeçar
+            </button>
           </div>
         </div>
       </div>
@@ -469,8 +444,8 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form  autocomplete="off">
-            <!-- #formCriaSequencia="ngForm" -->
+          <form #formCriaSequencia="ngForm" autocomplete="off">
+            
             <div class="row">
               <div class="form-group col-12">
                 <label for="tamanho">Tamanho do vetor:</label>
@@ -492,8 +467,8 @@
             type="button"
             class="btn btn-primary myButton"
             data-dismiss="modal"
+            (click)="criarSequenciaNumerica(formCriaSequencia)"
             >
-            <!-- (click)="criarSequenciaNumerica(formCriaSequencia)" -->
             Avançar
           </button>
         </div>
