@@ -39,18 +39,11 @@ export class SimulacaoBubbleComponent implements OnInit {
   indCardSelecionado = [];
   isCardAuxiliarClicada: boolean;
 
-  listaObjetivos = [
-    "Criar sequência numérica.",
-    "Percorra a sequência e execute as operações a seguir:",
-    "Compare dois elementos adjacentes.",
-    "Se os elementos não estiverem em ordem, ordene.",
-    "Senão, avance para o próximo par.",
-    "Repita a operação até que não haja mais trocas a serem feitas.",
-  ];
+  dadosForm;
 
   constructor(
     private toastr: ToastrService,
-    private modalService: BsModalService
+    // private modalService: BsModalService
   ) {
     this.indSequenciaCriada = false;
     this.indAuxiliarCriada = false;
@@ -64,9 +57,11 @@ export class SimulacaoBubbleComponent implements OnInit {
 
 
   criarSequenciaNumerica(formCriaSequencia) {
-    let dadosForm = formCriaSequencia.form.value;
+    this.isVetorOrdenado = false;
 
-    let tamanho = dadosForm.tamanho;
+    this.dadosForm = formCriaSequencia.form.value;
+
+    let tamanho = this.dadosForm.tamanho;
     this.randArray = this.randomArray(Number(tamanho), 9);
     this.randArray.sort(() => Math.random() - 0.5);
 
@@ -375,6 +370,10 @@ export class SimulacaoBubbleComponent implements OnInit {
     this.isCardAuxSelecionado = !this.isCardAuxSelecionado;
   }
 
+  fecharModalVetorOrdenado() {
+    this.modalTeste.hide();
+    
+  }
 
 
 }
