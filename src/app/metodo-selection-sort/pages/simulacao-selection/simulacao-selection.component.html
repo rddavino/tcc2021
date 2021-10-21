@@ -51,14 +51,14 @@
               </button>
 
               <button
-              *ngIf="indDadosForm"
-              class="btn btn-primary mr-3"
-              (click)="criarVariavelMin()"
-              [hidden]="indMinCriada"
-            >
-              <i class="fas fa-plus"></i>
-              Criar variável com menor valor
-            </button>
+                *ngIf="indDadosForm"
+                class="btn btn-primary mr-3"
+                (click)="criarVariavelMin()"
+                [hidden]="indMinCriada"
+              >
+                <i class="fas fa-plus"></i>
+                Criar variável com menor valor
+              </button>
 
               <button
                 *ngIf="indDadosForm"
@@ -82,8 +82,6 @@
       </div>
 
       <div class="component-main-simulacao" *ngIf="indDadosForm">
-      
-
         <!-- ÁREA DA SIMULAÇÃO -->
         <div id="areaSimulacao">
           <div class="cards_areaSimulacao">
@@ -115,46 +113,51 @@
               </ng-container>
             </div>
 
-            <div class="minAux_areaSimulacao">
-              <div class="min_areaSimulacao">
-                <ng-container *ngIf="indMinCriada">
-                  <div class="elementoEposicao_aux">
-                    <small>Menor</small>
-                    <!-- (click)="selecionarCardAux()" -->
-                    <div
-                      id="cardAux"
-                      class="elementoVetor elementoAuxiliar"
-                      >
-                      {{ min }}
-                    </div>
+            <!-- <div class="min_areaSimulacao">
+              <ng-container *ngIf="indMinCriada">
+                <div class="elementoEposicao_aux">
+                  <small>Menor</small> -->
+                  <!-- (click)="selecionarCardAux()" -->
+                  <!-- <div id="cardAux" class="elementoVetor elementoAuxiliar">
+                    {{ min }}
                   </div>
-                </ng-container>
-              </div>
-  
-              <div class="aux_areaSimulacao">
-                <ng-container *ngIf="indAuxiliarCriada">
-                  <div class="elementoEposicao_aux">
-                    <small>Auxiliar</small>
-                    <div
-                      id="cardAux"
-                      (click)="selecionarCardAux()"
-                      class="elementoVetor elementoAuxiliar"
-                    >
-                      {{ aux }}
-                    </div>
+                </div>
+              </ng-container>
+            </div> -->
+
+            <div class="aux_areaSimulacao">
+              <ng-container *ngIf="indMinCriada">
+                <div class="elementoEposicao_min">
+                  <small>Menor</small>
+                  <div
+                    id="cardAux"
+                    (click)="selecionarCardAux()"
+                    class="elementoVetor elementoAuxiliar"
+                  >
+                    {{ min }}
                   </div>
-                </ng-container>
-              </div>
+                </div>
+              </ng-container>
             </div>
 
+            <div class="aux_areaSimulacao">
+              <ng-container *ngIf="indAuxiliarCriada">
+                <div class="elementoEposicao_aux">
+                  <small>Auxiliar</small>
+                  <div
+                    id="cardAux"
+                    (click)="selecionarCardAux()"
+                    class="elementoVetor elementoAuxiliar"
+                  >
+                    {{ aux }}
+                  </div>
+                </div>
+              </ng-container>
+            </div>
           </div>
 
           <!-- botoes de ação -->
-          <div
-            id="botoesBottom"
-            *ngIf="indAuxiliarCriada"
-            class="botoesBottom"
-          >
+          <div id="botoesBottom" *ngIf="indAuxiliarCriada" class="botoesBottom">
             <div class="botoesBottom_main">
               <button
                 *ngIf="indDadosForm"
@@ -169,7 +172,7 @@
               <button
                 *ngIf="indDadosForm"
                 class="botoesBottom_Item btn btn-secondary"
-                (click)="moverParaAuxiliar(posCardSelecionado)"
+                (click)="moverParaMenor(posCardSelecionado)"
                 [disabled]="isVetorOrdenado"
               >
                 <i class="fas fa-sign-out-alt"></i>
@@ -410,68 +413,67 @@
 
 <!-- modal criar sequencia -->
 <div id="modal_criarSequencia" class="modal fade" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title text-black">CRIAR SEQUÊNCIA NUMÉRICA</h5>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-black">CRIAR SEQUÊNCIA NUMÉRICA</h5>
+        <button
+          type="button"
+          class="close text-primary p-1"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Ao clicar em avançar, será criada uma
+          <strong>sequência numérica aleatória com números entre 0 e 9.</strong>
+        </p>
+        <div
+          *ngIf="mensagemAtencao"
+          class="alert alert-danger alert-dismissible fade show text-left"
+          role="alert"
+        >
+          <strong>Atenção: </strong> {{ mensagemAtencao }}
           <button
             type="button"
-            class="close text-primary p-1"
-            data-dismiss="modal"
+            class="close"
+            data-dismiss="alert"
             aria-label="Close"
+            (click)="limparMensagem()"
           >
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          <p>
-            Ao clicar em avançar, será criada uma
-            <strong>sequência numérica aleatória com números entre 0 e 9.</strong>
-          </p>
-          <div
-            *ngIf="mensagemAtencao"
-            class="alert alert-danger alert-dismissible fade show text-left"
-            role="alert"
-          >
-            <strong>Atenção: </strong> {{ mensagemAtencao }}
-            <button
-              type="button"
-              class="close"
-              data-dismiss="alert"
-              aria-label="Close"
-              (click)="limparMensagem()"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <form #formCriaSequencia="ngForm" autocomplete="off">
-            
-            <div class="row">
-              <div class="form-group col-12">
-                <label for="tamanho">Tamanho do vetor:</label>
-                <input
-                  ngModel
-                  name="tamanho"
-                  type="tel"
-                  class="form-control"
-                  id="tamanho"
-                  placeholder="Informe um número de 1 a 9"
-                  maxlength="1"
-                />
-              </div>
+        <form #formCriaSequencia="ngForm" autocomplete="off">
+          <div class="row">
+            <div class="form-group col-12">
+              <label for="tamanho">Tamanho do vetor:</label>
+              <input
+                ngModel
+                name="tamanho"
+                type="tel"
+                class="form-control"
+                id="tamanho"
+                placeholder="Informe um número de 1 a 9"
+                maxlength="1"
+              />
             </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-primary myButton"
-            data-dismiss="modal"
-            (click)="criarSequenciaNumerica(formCriaSequencia)"
-            >
-            Avançar
-          </button>
-        </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary myButton"
+          data-dismiss="modal"
+          (click)="criarSequenciaNumerica(formCriaSequencia)"
+        >
+          Avançar
+        </button>
       </div>
     </div>
   </div>
+</div>

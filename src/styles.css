@@ -476,8 +476,17 @@ color: white;
 .elementoEposicao_aux{
     text-align: center;
     flex-basis: 70px;
+    margin-left: 12px;
 
+    
 }
+
+.elementoEposicao_min{
+    text-align: center;
+    flex-basis: 70px;
+    margin-left: 12px;
+}
+
 
 .aux_areaSimulacao {
     flex-basis: 70px;
@@ -560,9 +569,9 @@ color: white;
         margin-right: 0px;
     }
 
-    .botoesBottom_main{
+    /* .botoesBottom_main{
         width: 60%;
-    }
+    } */
 }
 
 @media screen and (max-width: 1354px) {
@@ -627,6 +636,3 @@ color: white;
 
 }
 
-.minAux_areaSimulacao {
-    width: 5%;
-}
