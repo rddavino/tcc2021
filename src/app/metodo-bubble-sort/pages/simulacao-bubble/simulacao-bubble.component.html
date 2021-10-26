@@ -50,10 +50,10 @@
             <button
               id="btnCriarSequencia"
               class="btn btn-primary"
-              data-target="#modal_criarSequencia"
-              data-toggle="modal"
+            
               title="Criar"
               [hidden]="indSequenciaCriada"
+              (click)="abrirModalCriarSequencia()"
             >
               <i class="fas fa-plus"></i>
               Criar sequência numérica
@@ -215,6 +215,11 @@
               <p>
                 <i class="far fa-arrow-alt-circle-right text-primary"></i> Criar
                 sequência numérica.
+              </p>
+
+              <p>
+                <i class="far fa-arrow-alt-circle-right text-primary"></i> Criar
+                variável auxiliar.
               </p>
   
               <p class="text-sm">
@@ -395,7 +400,7 @@
   </div>
 
   <!-- modal criar sequencia -->
-  <div id="modal_criarSequencia" class="modal fade" tabindex="-1">
+  <div  class="modal fade" tabindex="-1" #modalCriarSequencia="bs-modal"  bsModal > 
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -403,9 +408,10 @@
           <button
             type="button"
             class="close text-primary p-1"
-            data-dismiss="modal"
             aria-label="Close"
-          >
+            (click)="modalCriarSequencia.hide()"
+            >
+            <!-- data-dismiss="modal" -->
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -426,7 +432,7 @@
               class="close"
               data-dismiss="alert"
               aria-label="Close"
-              (click)="limparMensagem()"
+          
             >
               <span aria-hidden="true">&times;</span>
             </button>
@@ -441,7 +447,7 @@
                   type="tel"
                   class="form-control"
                   id="tamanho"
-                  placeholder="Informe um número de 1 a 9"
+                  placeholder="Informe um número de 3 a 9"
                   maxlength="1"
                 />
               </div>
@@ -452,9 +458,9 @@
           <button
             type="button"
             class="btn btn-primary myButton"
-            data-dismiss="modal"
             (click)="criarSequenciaNumerica(formCriaSequencia)"
-          >
+            >
+            <!-- data-dismiss="modal" -->
             Avançar
           </button>
         </div>
@@ -485,6 +491,11 @@
                 <p>
                   <i class="far fa-arrow-alt-circle-right text-primary"></i> Criar
                   sequência numérica.
+                </p>
+
+                <p>
+                  <i class="far fa-arrow-alt-circle-right text-primary"></i> Criar
+                  variável auxiliar.
                 </p>
     
                 <p class="text-sm">
@@ -697,7 +708,7 @@
 
 
  <!-- modal teste -->
- <div 
+  <div 
 
     class="modal fade" 
 

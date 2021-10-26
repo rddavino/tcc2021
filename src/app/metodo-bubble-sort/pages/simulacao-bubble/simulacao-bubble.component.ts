@@ -12,6 +12,7 @@ import { ModalVetorOrdenadoComponent } from 'src/app/shared/components/modal-vet
 export class SimulacaoBubbleComponent implements OnInit {
 
   @ViewChild('modalTeste', { static: false }) modalTeste: ModalDirective;
+  @ViewChild('modalCriarSequencia', { static: false }) modalCriarSequencia: ModalDirective;
 
 
 
@@ -55,26 +56,34 @@ export class SimulacaoBubbleComponent implements OnInit {
 
 
   criarSequenciaNumerica(formCriaSequencia) {
+    
     this.isVetorOrdenado = false;
 
     this.dadosForm = formCriaSequencia.form.value;
 
-    let tamanho = this.dadosForm.tamanho;
+   let tamanho = this.dadosForm.tamanho;
+
+    if(tamanho < 3) {
+      this.limparMensagem();
+      this.mensagemAtencao = "O vetor deve ter no mínimo 3 elementos."
+      //this.toastr.error(this.mensagemAtencao);
+      return;
+    }
+
     this.randArray = this.randomArray(Number(tamanho), 9);
     this.randArray.sort(() => Math.random() - 0.5);
 
-    if (tamanho !== '' || tamanho !== 0) {
+    if (tamanho != '' || tamanho != 0) {
       this.indDadosForm = true;
       formCriaSequencia.form.reset();
       this.indSequenciaCriada = true;
+      this.fecharModalCriarSequencia();
+
 
       return this.randArray;
 
-    } else {
-      this.limparMensagem();
-      this.mensagemAtencao = "O vetor deve ter no mínimo 3 elementos."
-      this.toastr.error(this.mensagemAtencao);
     }
+    
 
   }
 
@@ -381,5 +390,12 @@ export class SimulacaoBubbleComponent implements OnInit {
     
   }
 
+  fecharModalCriarSequencia() {
+    this.modalCriarSequencia.hide();
+  }
 
+  abrirModalCriarSequencia() {
+
+    this.modalCriarSequencia.show();
+  }
 }
