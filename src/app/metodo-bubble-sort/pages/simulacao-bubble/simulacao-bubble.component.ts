@@ -43,12 +43,10 @@ export class SimulacaoBubbleComponent implements OnInit {
 
   constructor(
     private toastr: ToastrService,
-    // private modalService: BsModalService
   ) {
     this.indSequenciaCriada = false;
     this.indAuxiliarCriada = false;
     this.isTrocaRealizada = false;
-
   }
 
   ngOnInit(): void {
@@ -86,21 +84,21 @@ export class SimulacaoBubbleComponent implements OnInit {
     });
   }
 
-  receberDica() {
-    this.toastr.info('Aqui tem uma super dica');
-  }
+  // receberDica() {
+  //   this.toastr.info('Aqui tem uma super dica');
+  // }
 
   criarVariavelAuxiliar() {
     this.mensagemInfo = "";
     this.mensagemAlerta = "";
     this.indAuxiliarCriada = true;
-
   }
 
   limpar() {
     this.randArray = null;
     this.indDadosForm = false;
     this.indAuxiliarCriada = false;
+    this.isTrocaRealizada = false;
     this.indSequenciaCriada = false;
     this.esquerda = 0;
     this.direita = 1;
@@ -308,9 +306,16 @@ export class SimulacaoBubbleComponent implements OnInit {
       return;
     }
 
+    if(i != this.direita && i != this.esquerda) {
+      this.limparMensagem();
+      this.mensagemAlerta = "Somente as cartas que estão sendo comparadas devem ser abertas"
+      this.toastr.warning(this.mensagemAlerta);
+      return;
+    }
+
     if (!this.indAuxiliarCriada) {
       this.limparMensagem();
-      this.mensagemAlerta = "Antes de tentar ordernar o vator, crie uma variável auxiliar."
+      this.mensagemAlerta = "Antes de tentar ordernar o vetor, crie uma variável auxiliar."
       this.toastr.warning(this.mensagemAlerta);
       return;
     }
@@ -323,6 +328,7 @@ export class SimulacaoBubbleComponent implements OnInit {
       this.isCardSelecionado = !this.isCardSelecionado;
     }
 
+    
     this.posCardSelecionado = i;
     this.valorCardSelecionado = this.randArray[i];
     this.isCartaSelecionada(i);
