@@ -52,6 +52,8 @@
     width: 600px;
 }
 
+
+
 .titulo{
     font-family: 'Oswald', sans-serif;
     font-size: 96px;
@@ -67,7 +69,7 @@
 }
 
 .home_content {
-    margin: 20px 0px 70px 0px;
+    margin: 0px 0px 70px 0px;
 }
 
 .home_content p {
@@ -77,16 +79,44 @@
 }
 
 .estouPronto {
-    height: 400px;
+   padding-top: 78px;
+    height: 350px;
     position: relative;
-    top: -190px;
-    bottom: 0px;
     background-color: #2f2e41;
+    
+}
+
+.estouPronto_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.estouPronto_Titulo {
+    color: #fff;
+    font-size: 48px;
+    font-weight: 600;
+}
+
+.estouPronto_Subtitulo {
+    margin-bottom: 24px;
+    color: #fff;
+
 }
 
 .linksMenu{
     color: white;
     padding-top: 200px;
+}
+
+.dicasAbaixo{
+    display: none;
+}
+
+.dicasAbaixo_banner{
+    font-size: 16px;
+    display: block;
 }
 
 
@@ -204,6 +234,14 @@
         right: 100px;
     }
 
+    .dicasAbaixo{
+        display: block;
+    }
+    
+    .dicasAbaixo_banner{
+        display: none;
+    }
+    
 }
 
 
@@ -223,6 +261,7 @@
 
     .texto_banner {
         width: 250px;
+        height: auto;
     }
 
     .titulo{

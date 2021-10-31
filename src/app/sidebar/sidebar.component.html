@@ -1,4 +1,6 @@
-<ul class="navbar-nav bg-light sidebar left-sidebar accordion text-secondary" id="accordionSidebar">
+<ng-container>
+
+<ul [hidden]="indHome" class="navbar-nav bg-light sidebar left-sidebar accordion text-secondary" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <!-- <a class="sidebar-brand d-flex align-items-center justify-content-center" routerLink="home">
@@ -68,7 +70,7 @@
     </li>
 
      <!-- Nav Item - Insertion Sort -->
-    <li class="nav-item" *ngIf="false">
+    <li class="nav-item" *ngIf="true">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#insertionSort"
           aria-expanded="true" aria-controls="insertionSort">
           <!-- <i class="fas fa-sign-in-alt"></i> -->
@@ -80,14 +82,14 @@
               <!-- <h6 class="collapse-header">Custom Utilities:</h6> -->
               <a class="collapse-item" routerLink="about-insertion-sort">Sobre o método</a>
               <a class="collapse-item" routerLink="simulacao-insertion">Simulação</a>
-              <a class="collapse-item" routerLink="exercicios-insertion-sort">Exercícios</a>
+              <!-- <a class="collapse-item" routerLink="exercicios-insertion-sort">Exercícios</a> -->
 
           </div>
       </div>
     </li>
 
    <!-- Nav Item - Quick Sort -->
-    <li class="nav-item" *ngIf="false">
+    <li class="nav-item" *ngIf="true">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#quickSort"
         aria-expanded="true" aria-controls="quickSort">
         <!-- <i class="fas fa-compress-alt"></i> -->
@@ -99,7 +101,7 @@
             <!-- <h6 class="collapse-header">Custom Utilities:</h6> -->
             <a class="collapse-item" routerLink="about-quick-sort">Sobre o método</a>
             <a class="collapse-item" routerLink="simulacao-quick">Simulação</a>
-            <a class="collapse-item" routerLink="exercicios-quick-sort">Exercícios</a>
+            <!-- <a class="collapse-item" routerLink="exercicios-quick-sort">Exercícios</a> -->
 
         </div>
     </div>
@@ -112,3 +114,5 @@
    
 
 </ul>
+
+</ng-container>

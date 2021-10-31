@@ -1,4 +1,4 @@
-<div class="banner_background">
+<section class="banner_background">
     <div class="meu_container">
         <div class="header desktop">
           <app-logo></app-logo>
@@ -10,6 +10,11 @@
             <h4 class="subtitulo">
               Nosso propósito é facilitar o acesso ao conhecimento para empoderar as pessoas, <strong>transformando o futuro através da tecnologia.</strong>
             </h4>
+            <p class="dicasAbaixo_banner mt-3">
+              Esta ferramenta irá te ajudar a compreender os fundamentos básicos de
+              algoritmos de ordenação. <strong>Abaixo, algumas dicas para você!</strong>
+            </p>
+         
           </div>
           <div class="banner_Img">
               <div class="circle2"></div>
@@ -24,46 +29,40 @@
           
         </div>
     </div>
-</div>
+</section>
 
-<div  class="meu_container">
+<section  class="meu_container">
     <div class="home_content">
 
-        <p>
-          Esta ferramenta irá te ajudar a compreender os fundamentos básicos de
-          algoritmos de ordenação. <strong>Abaixo, algumas dicas para você!</strong>
-        </p>
+      <p class="dicasAbaixo">
+        Esta ferramenta irá te ajudar a compreender os fundamentos básicos de
+        algoritmos de ordenação. <strong>Abaixo, algumas dicas para você!</strong>
+      </p>
      
         <app-card-home></app-card-home>
 
     </div>
     
-</div>
+</section>
 
-<div class="estouPronto">
-    <div class="container">
-        <div class="linksMenu">
-                              
-            <div class="dropdown show">
-              <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Bubble Sort
-              </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" routerLink="about-bubble-sort">Sobre o método</a>
-                <a class="dropdown-item" routerLink="simulacao-bubble">Simulação</a>
-              </div>
-            </div>
-    
-            <div class="dropdown show">
-              <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Selection Sort
-              </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" routerLink="about-selection-sort">Sobre o método</a>
-                <a class="dropdown-item" routerLink="simulacao-selection">Simulação</a>
-              </div>
-            </div>
-        </div>
+<section class="estouPronto">
+  <div class="meu_container">
+    <div class="estouPronto_content">
+      <h1 class="estouPronto_Titulo">Então, vamos lá!</h1>
+      <h4 class="estouPronto_Subtitulo">
+        Só clicar nesse botão aí embaixo para começar.
+      </h4>
+      <button
+        id="btnCriarSequencia"
+        class="btn btn-lg btn-outline-primary"
+        title="Começar"
+        (click)="redirecionarParaMetodos()"
+      >
+        Começar
+    </button>
     </div>
+  </div>
+  
+  
 
-</div>
+</section>

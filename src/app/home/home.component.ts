@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router'; 
 
 @Component({
   selector: 'app-home',
@@ -8,10 +9,17 @@ import { Component, Input, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
 
-  constructor() {
+  constructor(
+    private router: Router, 
+    private route: ActivatedRoute
+  ) {
   }
 
   ngOnInit(): void {
   }
 
+  redirecionarParaMetodos() {
+    this.router.navigate(['about-bubble-sort']);
+    
+  }
 }

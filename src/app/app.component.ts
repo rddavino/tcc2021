@@ -9,33 +9,33 @@ import { Router, NavigationStart, Event as NavigationEvent } from '@angular/rout
 export class AppComponent implements OnDestroy {
 
   title = 'trabalhoConclusaoCurso';
-  indHome: boolean;
-  event$
+  // indHome: boolean;
+  // event$
 
   constructor(private router: Router) {
-    this.indHome = false;
-    this.obtemUrl();
+    // this.indHome = false;
+    // this.obtemUrl();
   }
 
-  obtemUrl() {
-    this.event$ = this.router.events
-        .subscribe(
-          (event: NavigationEvent) => {
-            if (event instanceof NavigationStart) {
-            console.log("path", event.url);
-              if(event.url == '/') {
-                console.log("home")
-                this.indHome = true;
-              }
-            }
-          });
+  // obtemUrl() {
+  //   this.event$ = this.router.events
+  //       .subscribe(
+  //         (event: NavigationEvent) => {
+  //           if (event instanceof NavigationStart) {
+  //           console.log("path", event.url);
+  //             if(event.url == '/') {
+  //               console.log("home")
+  //               this.indHome = true;
+  //             }
+  //           }
+  //         });
 
-  }
+  // }
 
  
 
   ngOnDestroy() {
-    this.event$.unsubscribe();
+    // this.event$.unsubscribe();
   }
 
 

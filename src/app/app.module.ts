@@ -44,9 +44,7 @@ const routes: Routes = [
 
   { path: 'simulacao-selection', component: SimulacaoSelectionComponent },
   { path: 'about-selection-sort', component: AboutSelectionComponent},
-  { path: 'exercicios-selection-sort', component: ExerciciosSelectionComponent},
-
-  { path: 'home', component: HomeComponent }
+  { path: 'exercicios-selection-sort', component: ExerciciosSelectionComponent}
 ]
 
 

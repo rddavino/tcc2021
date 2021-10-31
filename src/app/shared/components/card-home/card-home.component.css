@@ -1,4 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&family=Roboto:wght@100;400&display=swap');
+
+
 .cardsExplicativos {
     position: relative;
     z-index: 9;
+}
+
+.cardsExplicativos_Item {
+    padding: 30px;
+}
+
+
+
+.cardsExplicativos_Numero {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
+    font-size: 110px;
+    color: #1865f2;
+    line-height: 112px;
+    margin-bottom: 24px;
+}
+
+.cardsExplicativos_Texto{
+    display: flex;
+    flex-direction: column;
+}
+
+.cardsExplicativos_Titulo {
+    font-size: 22px;
+    line-height: 26px;
+    letter-spacing: -0.3px;
+    margin-bottom: 14px;
+    font-weight: bold;
+   
+}
+
+.cardsExplicativos_Paragrafo {
+    /* font-family: AprovaSans, sans-serif; */
+    font-size: 16px;
+    line-height: 21px;
+    letter-spacing: 1px;
 }
