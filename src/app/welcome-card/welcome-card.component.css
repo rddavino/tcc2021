@@ -1,6 +1,6 @@
 .banner_home {
     width: 100%;
-    height: 400px;
+    min-height: 400px;
 }
 
 .banner_Container{
@@ -20,8 +20,11 @@
 }
 
 .banner_Img{
-    width: 40%;
-display: flex;
-justify-content: center;
-align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner_Img img {
+    width: 100%;
 }

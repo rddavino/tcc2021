@@ -1,5 +1,5 @@
 <div id="wrapper" class="esconderDesktop">
-  <div class="desktop">
+  <div class="desktop" *ngIf="!indHome">
     <app-sidebar></app-sidebar>
   </div>
 
@@ -7,17 +7,9 @@
     <div id="content">
       <!-- <app-navbar></app-navbar> -->
 
-
       <div class="medio">
         <div class="myHeader">
-            <div class="logo_myHeader">
-              <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fas fa-laugh-wink text-primary"></i>
-              </div>
-              <div class="brand_myHeader text-primary">
-                AJUDAÊ
-              </div>
-            </div>
+          <app-logo></app-logo>
 
             
             <div class="linksMenu">
@@ -44,7 +36,6 @@
             </div>
         </div>
       </div>
-
 
       <router-outlet></router-outlet>
     </div>

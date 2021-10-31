@@ -1,18 +1,69 @@
-<!-- <app-welcome-card></app-welcome-card>
-<app-card-home></app-card-home> -->
+<div class="banner_background">
+    <div class="meu_container">
+        <div class="header desktop">
+          <app-logo></app-logo>
+        </div>
+      
+        <div class="banner">
+          <div class="texto_banner">
+            <h1 class="titulo">Que bom ver você por aqui!</h1>
+            <h4 class="subtitulo">
+              Nosso propósito é facilitar o acesso ao conhecimento para empoderar as pessoas, <strong>transformando o futuro através da tecnologia.</strong>
+            </h4>
+          </div>
+          <div class="banner_Img">
+              <div class="circle2"></div>
+              <div class="circle"></div>
+            <img
+              class="banner_svg px-3 px-sm-4 mt-3 mb-4"
+              style="width: 30rem"
+              src="assets/img/undraw_content_team.svg"
+            />
+          </div>
 
-<div class="container-fluid">
-    <div class="mt-4">
-        <div class="main-content-home">
-            <div class="content-home-title">
-                <h1 class="text-primary">Que bom ver você por aqui!</h1>
-            </div>
-
-            <div class="content-home-descricao">
-                <p>
-                    Está é uma ferramenta construída para ajudar você a compreender os algoritmos de ordenação mais conhecidos e estudados nos cursos de graduação da área de tecnologia da informação.
-                </p>
-            </div>    
-        </div>    
+          
+        </div>
     </div>
+</div>
+
+<div  class="meu_container">
+    <div class="home_content">
+
+        <p>
+          Esta ferramenta irá te ajudar a compreender os fundamentos básicos de
+          algoritmos de ordenação. <strong>Abaixo, algumas dicas para você!</strong>
+        </p>
+     
+        <app-card-home></app-card-home>
+
+    </div>
+    
+</div>
+
+<div class="estouPronto">
+    <div class="container">
+        <div class="linksMenu">
+                              
+            <div class="dropdown show">
+              <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Bubble Sort
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" routerLink="about-bubble-sort">Sobre o método</a>
+                <a class="dropdown-item" routerLink="simulacao-bubble">Simulação</a>
+              </div>
+            </div>
+    
+            <div class="dropdown show">
+              <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Selection Sort
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" routerLink="about-selection-sort">Sobre o método</a>
+                <a class="dropdown-item" routerLink="simulacao-selection">Simulação</a>
+              </div>
+            </div>
+        </div>
+    </div>
+
 </div>

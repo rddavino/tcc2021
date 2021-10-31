@@ -1,0 +1,33 @@
+.headerHome_Logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    padding: 8px;
+    border: 1px solid #4e73df;
+    cursor: pointer;
+}
+
+.headerHome_Logo a {
+    text-decoration: none !important;
+}
+
+.headerHome_Logo_letra {
+   text-transform: uppercase;
+    text-align: center;
+    color: #4e73df;
+    padding: 0px 11px;   
+    font-weight: bold;
+    font-size: 12px;
+
+}
+
+.headerHome_Logo_divider {
+    height: 20px;
+    width:1px;
+    background-color: #4e73df;
+}
+
+.orange {
+    color: rgb(245, 159, 31);
+}
