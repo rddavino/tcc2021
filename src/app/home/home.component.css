@@ -120,7 +120,19 @@
     display: block;
 }
 
+.olhinhos {
+    cursor: pointer;
+    padding: 3px;
+    position: absolute;
+    right: 28px;
+    bottom: 21px;
+    border-radius: 50%;
+}
 
+.olhinhos:hover {
+    background-color: #1865f2;
+    
+}
 
 @media screen and (max-width: 1366px) {
 

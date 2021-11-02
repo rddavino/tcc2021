@@ -20,6 +20,7 @@
             >
             A complexidade desse algoritmo é de ordem quadrática.
           </p>
+          
           <div class="alert alert-warning medio">
             <i class="fas fa-exclamation-triangle orange"></i>
             Se não tem certeza de como prosseguir, verifique os 
@@ -39,7 +40,7 @@
           </div>
 
           <div class="alert alert-warning desktop">
-            <i class="fas fa-exclamation-triangle text-warning"></i>
+            <i class="fas fa-exclamation-triangle orange"></i>
             Se não tem certeza de como prosseguir, verifique os objetivos ou o
             código.
           </div>
@@ -126,11 +127,11 @@
 
               <div class="aux_areaSimulacao">
                 <ng-container *ngIf="indAuxiliarCriada">
-                  <div class="elementoEposicao_aux">
+                  <div class="elementoEposicao_aux"  (click)="selecionarCardAux()">
                     <small>Auxiliar</small>
                     <div
                       id="cardAux"
-                      (click)="selecionarCardAux()"
+                     
                       class="elementoVetor elementoAuxiliar"
                     >
                       {{ aux }}
@@ -219,7 +220,7 @@
 
               <p>
                 <i class="far fa-arrow-alt-circle-right orange"></i> Criar
-                variável auxiliar.
+                variável "auxiliar".
               </p>
   
               <p class="text-sm">
@@ -707,14 +708,14 @@
 
 
 
- <!-- modal teste -->
+ <!-- modal Vetor Ordenado -->
   <div 
 
     class="modal fade" 
 
     bsModal 
 
-    #modalTeste="bs-modal" 
+    #modalVetorOrdenado="bs-modal" 
 
     tabindex="-1" 
 
@@ -729,7 +730,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title pull-left">PARABÉNS!</h4>
-          <button type="button" class="close pull-right" aria-label="Close" (click)="modalTeste.hide()">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalVetorOrdenado.hide()">
             <span aria-hidden="true">&times;</span>
           </button>
 

@@ -27,9 +27,11 @@ import { SimulacaoSelectionComponent } from './metodo-selection-sort/pages/simul
 import { AboutSelectionComponent } from './metodo-selection-sort/pages/about-selection/about-selection.component';
 import { ExerciciosSelectionComponent } from './metodo-selection-sort/pages/exercicios-selection/exercicios-selection.component';
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
+import { ImportanciaMetodosOrdenacaoComponent } from './importancia-metodos-ordenacao/importancia-metodos-ordenacao.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'importancia-metodos-ordenacao', component: ImportanciaMetodosOrdenacaoComponent},
   { path: 'simulacao-bubble', component: SimulacaoBubbleComponent },
   { path: 'about-bubble-sort', component: AboutBubbleSortComponent},
   { path: 'exercicios-bubble-sort', component: ExerciciosBubbleSortComponent},
@@ -56,11 +58,16 @@ const routes: Routes = [
     WelcomeCardComponent,
     SimulacaoBubbleComponent,
     AboutBubbleSortComponent,
+    ExerciciosBubbleSortComponent,
     SimulacaoSelectionComponent,
     AboutSelectionComponent,
-    ExerciciosBubbleSortComponent,
+    SimulacaoInsertionComponent,
+    AboutInsertionComponent,
+    SimulacaoQuickComponent,
+    AboutQuickComponent,
     HomeComponent,
     FooterComponent,
+    ImportanciaMetodosOrdenacaoComponent,
   
   ],
   imports: [
@@ -79,7 +86,7 @@ const routes: Routes = [
       closeButton: true	
       
     }),
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, {scrollOffset: [0, 0], scrollPositionRestoration: 'top' }),
     ModalModule.forRoot(),
     
   ],

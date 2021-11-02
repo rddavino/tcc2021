@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-simulacao-quick',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SimulacaoQuickComponent implements OnInit {
 
+  @ViewChild('modalAreaEmConstrucao', { static: false }) modalAreaEmConstrucao: ModalDirective;
+  indSequenciaCriada;
+  
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  fecharModalAreaEmConstrucao() {
+    this.modalAreaEmConstrucao.hide();
+  }
+
+  abrirModalAreaEmConstrucao() {
+    this.modalAreaEmConstrucao.show();
+  }
 }

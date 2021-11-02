@@ -26,6 +26,18 @@ h1, h2, h3, h4, h5, h6 {
 
 }
 
+.areaConstrucao_emoji {
+    display: flex;
+    align-items: center;
+    margin-top: 32px;
+}
+
+
+
+.texto_objetivos {
+    overflow-y: auto;
+}
+
 .bg-primary {
     background-color: #1865f2 !important ;
 }
@@ -525,6 +537,7 @@ color: white;
 .elementoAuxiliar {
     background-color:#000;
     color: #fff;
+    cursor: pointer;
 }
 
 .elementoVetorAberto {

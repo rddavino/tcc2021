@@ -11,7 +11,7 @@ import { ModalVetorOrdenadoComponent } from 'src/app/shared/components/modal-vet
 })
 export class SimulacaoBubbleComponent implements OnInit {
 
-  @ViewChild('modalTeste', { static: false }) modalTeste: ModalDirective;
+  @ViewChild('modalVetorOrdenado', { static: false }) modalVetorOrdenado: ModalDirective;
   @ViewChild('modalCriarSequencia', { static: false }) modalCriarSequencia: ModalDirective;
 
 
@@ -264,7 +264,7 @@ export class SimulacaoBubbleComponent implements OnInit {
         this.isCartaAberta(index);
       });
       this.isVetorOrdenado = true;
-      this.modalTeste.show();
+      this.modalVetorOrdenado.show();
 
       //console.log("vetor ordenado");
     }
@@ -386,7 +386,7 @@ export class SimulacaoBubbleComponent implements OnInit {
   }
 
   fecharModalVetorOrdenado() {
-    this.modalTeste.hide();
+    this.modalVetorOrdenado.hide();
     
   }
 

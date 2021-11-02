@@ -20,6 +20,9 @@ export class HomeComponent implements OnInit {
 
   redirecionarParaMetodos() {
     this.router.navigate(['about-bubble-sort']);
-    
+  }
+
+  redirecionarParaImportanciaMetodos() {
+    this.router.navigate(['importancia-metodos-ordenacao']);
   }
 }

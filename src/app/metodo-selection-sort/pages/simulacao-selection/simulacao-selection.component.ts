@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { BsModalRef, ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -7,6 +8,10 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./simulacao-selection.component.css']
 })
 export class SimulacaoSelectionComponent implements OnInit {
+
+  @ViewChild('modalAreaEmConstrucao', { static: false }) modalAreaEmConstrucao: ModalDirective;
+
+  modalRef: BsModalRef;
 
   indSequenciaCriada;
   indAuxiliarCriada;
@@ -32,12 +37,21 @@ export class SimulacaoSelectionComponent implements OnInit {
 
   constructor(
     private toastr: ToastrService,
-  ) {  }
+  ) { }
 
   ngOnInit(): void {
   }
 
-  abrirCartas(){
+
+  fecharModalAreaEmConstrucao() {
+    this.modalAreaEmConstrucao.hide();
+  }
+
+  abrirModalAreaEmConstrucao() {
+    this.modalAreaEmConstrucao.show();
+  }
+
+  abrirCartas() {
     //TO DO
   }
 
@@ -46,18 +60,18 @@ export class SimulacaoSelectionComponent implements OnInit {
   }
 
   criarSequenciaNumerica(formCriaSequencia) {
-    let dadosForm = formCriaSequencia.form.value;    
-    
+    let dadosForm = formCriaSequencia.form.value;
+
     let tamanho = dadosForm.tamanho;
     this.randArray = this.randomArray(Number(tamanho), 9);
     this.randArray.sort(() => Math.random() - 0.5);
     window.setTimeout(() => this.isCartaAberta(0), 500);
-    
-    if(tamanho !== '' || tamanho !== 0) {
+
+    if (tamanho !== '' || tamanho !== 0) {
       this.indDadosForm = true;
       formCriaSequencia.form.reset();
       this.indSequenciaCriada = true;
-      
+
       return this.randArray;
 
     } else {
@@ -168,10 +182,10 @@ export class SimulacaoSelectionComponent implements OnInit {
     });
   }
 
-  realizarTroca(){
+  realizarTroca() {
     //TO DO
   }
-  
+
   selecionarCard(i): void {
     if (this.isVetorOrdenado == true) {
       return;
@@ -196,13 +210,13 @@ export class SimulacaoSelectionComponent implements OnInit {
     this.valorCardSelecionado = this.randArray[i];
     this.isCartaSelecionada(i);
   }
-  
+
   isCartaSelecionada(i): void {
     let element = document.getElementById(i);
     element.className = 'elementoVetor elementoVetorSelecionado';
   }
 
-  selecionarCardAux(){
+  selecionarCardAux() {
     //TO DO
   }
 
@@ -213,7 +227,7 @@ export class SimulacaoSelectionComponent implements OnInit {
 
   }
 
-  
+
   isOrdenado(): boolean {
     //comparar pos esquerda e direita
     if (this.randArray[this.direita] >= this.randArray[this.esquerda]) {

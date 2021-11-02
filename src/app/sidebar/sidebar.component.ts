@@ -8,11 +8,11 @@ import { Router, NavigationStart, Event as NavigationEvent } from '@angular/rout
 })
 export class SidebarComponent implements OnInit {
 
-  indHome: boolean;
+  indSemSidebar: boolean;
   event$
 
   constructor(private router: Router) {
-    this.indHome = false;
+    this.indSemSidebar = false;
   }
 
   ngOnInit(): void {
@@ -25,13 +25,11 @@ export class SidebarComponent implements OnInit {
           (event: NavigationEvent) => {
             if (event instanceof NavigationStart) {
             console.log("path", event.url);
-              if(event.url == '/') {
-                console.log("home")
-                this.indHome = true;
-                console.log(this.indHome);
-                console.log("AQUI!");
+              if(event.url == '/' || event.url == '/importancia-metodos-ordenacao') {
+                this.indSemSidebar = true;
+               
               } else {
-                this.indHome = false;
+                this.indSemSidebar = false;
               }
             }
           });
