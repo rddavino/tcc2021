@@ -515,14 +515,13 @@
         </div>
         <div class="modal-body">
           <div id="objetivos">
-  
             <div class="right-sidebar-content">
               <ng-container>
                 <p>
                   <i class="far fa-arrow-alt-circle-right orange"></i> Criar
                   sequência numérica.
                 </p>
-
+  
                 <p>
                   <i class="far fa-arrow-alt-circle-right orange"></i> Criar
                   variável auxiliar.
@@ -530,17 +529,14 @@
     
                 <p class="text-sm">
                   <i class="far fa-arrow-alt-circle-right orange"></i>
-                  Percorrer a sequência executando as operações abaixo:
+                  Percorrer a sequência, a partir do primeiro elemento, executando as operações abaixo:
                 </p>
     
                 <div class="tab-space">
                   <p>
-                    1. <strong>Compare</strong> dois elementos adjacentes. <br />
-                    2. Se os elementos não estiverem em ordem,
-                    <strong>ordene.</strong><br />
-                    3. Senão, <strong>avance</strong> para o próximo par.<br />
-                    4. <strong>Repita</strong> a operação até que não haja mais
-                    trocas a serem feitas.
+                    1. Considera que o primeiro elemento é o menor<br />
+                    2. A partir do segundo elemento, insira os demais elementos na posição apropriada entre aqueles já ordenados<br />
+                    3. Mova os elementos maiores para posição seguinte do vetor.
                   </p>
                 </div>
               </ng-container>
@@ -578,11 +574,11 @@
           </button>
         </div>
         <div class="modal-body">
-          <div class="right-sidebar-content code">
+          <div class="right-sidebar-content code" *ngIf="true">
             <!-- linha 1 -->
             <ng-container>
               <span class="blue italic">void </span>
-              <span>bubble_sort</span>
+              <span>insertion</span>
               <span>(</span>
               <span class="blue italic">int </span>
               <span>vetor</span>
@@ -590,7 +586,7 @@
               <span>,</span>
               <span class="blue italic"> int </span>
               <span>n</span>
-              <span>) </span>
+              <span>)</span>
             </ng-container>
 
             <!-- linha 2 -->
@@ -600,18 +596,18 @@
               <div class="vertical-line">
                 <div class="tab-space">
                   <span class="blue italic">int </span>
-                  <span>k, j, aux;</span>
-                  <br /><br />
+                  <span>i, j, aux;</span>
+                  <br /><br>
 
                   <!-- linha 3 -->
                   <ng-container>
                     <span class="blue italic">for</span>
-                    <span>(k</span>
+                    <span>(i</span>
                     <span class="red"> = </span>
                     <span class="green">1</span>
-                    <span>; k </span>
+                    <span>; i </span>
                     <span class="red">&lt; </span>
-                    <span> n; k</span>
+                    <span> n; i</span>
                     <span class="red">++</span>
                     <span>)</span>
                     <span>&#123;</span>
@@ -621,88 +617,63 @@
                       <!-- linha 4 -->
                       <ng-container>
                         <div class="tab-space">
-                          <span>printf</span>
-                          <span>(</span>
-                          <span class="orange">"\n[%d] "</span>
-
-                          <span>, k)</span>;
+                          <span>j</span>
+                          <span class="red"> = </span>
+                          <span>i</span>;
                         </div>
                       </ng-container>
-
+                      <br>
                       <!-- linha 5 -->
                       <ng-container>
                         <div class="tab-space">
-                          <br />
-                          <span class="blue italic">for</span>
+                          
+                          <span class="blue italic">while</span>
                           <span>(j</span>
-                          <span class="red"> = </span>
-                          <span class="green">0</span>
-                          <span>; j </span>
-                          <span class="red">&#60; </span>
-                          <span>n </span>
-                          <span class="red">- </span>
-                          <span class="green">1</span>
-                          <span>; k</span>
-                          <span class="red">++</span>
-                          <span>)</span>
-                          <span>&#123;</span>
-                          <br />
+                          <span class="red"> &#62; </span>
+                          <span class="green">0 </span>
+                          <span>&& vetor[j</span>
+                          <span class="red">-</span>
+                          <span class="green">1]</span>
+                          <span class="red"> &#60; </span>
 
+                          <span>vetor[j])</span>
+                          
+
+                        <br>                             
+                        <span>&#123;</span>
                           <div class="vertical-line">
                             <!-- linha 6 -->
                             <ng-container>
-                              <div class="tab-space">
-                                <!-- printf -->
-                                <ng-container>
-                                  <span>printf</span>
-                                  <span>(</span>
-                                  <span class="orange">"%d, "</span>
-                                  <span>, j)</span>;
-                                </ng-container>
-
+                              <div class="tab-space">                                
                                 <!-- troca das posições -->
                                 <ng-container>
-                                  <br /><br />
-                                  <span class="blue italic">if</span>
-                                  <span>(vetor[j] </span>
-                                  <span class="red">&#62; </span>
-                                  <span>vetor[j </span>
-                                  <span class="red">+ </span>
-                                  <span class="green">1</span>
-                                  <span>])</span>
-                                  <span>&#123;</span>
-                                  <br />
+                                  <div>
+                               
+                                    <span>aux </span>
+                                    <span class="red">= </span>
+                                    <span>vetor[j];</span>
+                                  </div>
 
-                                  <ng-container>
-                                    <div class="vertical-line">
-                                      <div class="tab-space">
-                                        <div>
-                                          <span>aux </span>
-                                          <span class="pink">= </span>
-                                          <span>vetor[j];</span>
-                                        </div>
+                                  <div>
+                                    <span>vetor[j]</span>
+                                    <span class="red"> = </span>
+                                    <span>vetor[j</span>
+                                    <span class="red">-</span>
+                                    <span class="green">1</span>
+                                    <span>]</span>;
+                                  </div>
 
-                                        <div>
-                                          <span>vetor[j] </span>
-                                          <span class="pink">= </span>
-                                          <span>vetor[j </span>
-                                          <span class="pink">+ </span>
-                                          <span class="green">1</span>
-                                          <span>]</span>;
-                                        </div>
+                                  <div>
+                                    <span>vetor[j</span>
+                                    <span class="red">-</span>
+                                    <span class="green">1</span>
+                                    <span>]</span>
+                                    <span class="red"> = </span>
+                                    <span>aux</span>;
+                                  </div>
 
-                                        <div>
-                                          <span>vetor[j </span>
-                                          <span class="pink">+ </span>
-                                          <span class="green">1</span>
-                                          <span>]</span>
-                                          <span class="pink">+ </span>
-                                          <span>aux</span>;
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <span>&#125;</span>
-                                  </ng-container>
+                                  j<span class="red">++</span>;
+                                
                                 </ng-container>
                               </div>
                             </ng-container>
