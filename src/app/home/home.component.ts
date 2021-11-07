@@ -25,4 +25,8 @@ export class HomeComponent implements OnInit {
   redirecionarParaImportanciaMetodos() {
     this.router.navigate(['importancia-metodos-ordenacao']);
   }
+
+  redirecionarParaDefinicaoMetodos() {
+    this.router.navigate(['definicao-metodos-ordenacao']);
+  }
 }

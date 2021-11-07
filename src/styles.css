@@ -26,6 +26,15 @@ h1, h2, h3, h4, h5, h6 {
 
 }
 
+.icone_duvidas {
+    cursor: pointer;
+    margin: 0px 5px;
+}
+
+.icone_duvidas:hover {
+    color: #1ce4ff;
+}
+
 .areaConstrucao_emoji {
     display: flex;
     align-items: center;

@@ -1,30 +1,17 @@
 <ng-container>
 
-<ul [hidden]="indSemSidebar" class="navbar-nav bg-light sidebar left-sidebar accordion text-secondary" id="accordionSidebar">
+<ul [hidden]="indSemSidebar" class="navbar-nav bg-light sidebar left-sidebar accordion text-secondary pt-4" id="accordionSidebar">
 
-   <div class="mb-5">
+   <div class="mb-3">
        <app-logo></app-logo>
    </div>
 
-
-
-    <!-- Divider -->
-    <!-- <hr class="sidebar-divider "> -->
-
-    <!-- Nav Item - Dashboard -->
-    <!-- <li class="nav-item">
-        <a class="nav-link" routerLink="home">
-            <i class="fas fa-home fa-home-alt"></i>
-            <span>Home</span></a>
-    </li> -->
-
-    <!-- Divider -->
-    <!-- <hr class="sidebar-divider"> -->
-
-    <!-- Heading -->
-    <!-- <div class="sidebar-heading">
-        Métodos de Ordenação
-    </div> -->
+   <div class="mt-5">
+    <div class="sidebar-heading">
+        Métodos de ordenação
+    </div>
+    <hr class="sidebar-divider mt-3 mb-2">
+    </div>
 
     <!-- Nav Item - Bubble Sort -->
     <li class="nav-item">
@@ -104,7 +91,28 @@
 
    
 
+      <!-- Divider -->
+    <!-- <hr class="sidebar-divider mt-3 mb-4"> -->
+    
+  <!-- Heading -->
+  <div class="mt-5">
+      <div class="sidebar-heading">
+          Conteúdo adicional
+      </div>
+      <hr class="sidebar-divider mt-3 mb-2">
+    </div>
+
+
+    <!-- Nav Item - conteudo adicional -->
+    <li class="nav-item">
+        <a class="nav-link" routerLink="definicao-metodos-ordenacao">
+            <span>O que são métodos de ordenação?</span></a>
+    </li>
    
+    <li class="nav-item">
+        <a class="nav-link" routerLink="importancia-metodos-ordenacao">
+            <span>Por que estudar os métodos de ordenação?</span></a>
+    </li>
 
    
 

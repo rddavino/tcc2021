@@ -13,8 +13,7 @@ export class SimulacaoBubbleComponent implements OnInit {
 
   @ViewChild('modalVetorOrdenado', { static: false }) modalVetorOrdenado: ModalDirective;
   @ViewChild('modalCriarSequencia', { static: false }) modalCriarSequencia: ModalDirective;
-
-
+  @ViewChild('modalVariavelAuxiliar', { static: false }) modalVariavelAuxiliar: ModalDirective;
 
 
   randArray: any[];
@@ -101,6 +100,7 @@ export class SimulacaoBubbleComponent implements OnInit {
     this.mensagemInfo = "";
     this.mensagemAlerta = "";
     this.indAuxiliarCriada = true;
+    this.abrirModalVariavelAuxiliar();
   }
 
   limpar() {
@@ -395,7 +395,10 @@ export class SimulacaoBubbleComponent implements OnInit {
   }
 
   abrirModalCriarSequencia() {
-
     this.modalCriarSequencia.show();
+  }
+
+  abrirModalVariavelAuxiliar() {
+    this.modalVariavelAuxiliar.show();
   }
 }

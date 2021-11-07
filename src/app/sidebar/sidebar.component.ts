@@ -25,7 +25,11 @@ export class SidebarComponent implements OnInit {
           (event: NavigationEvent) => {
             if (event instanceof NavigationStart) {
             console.log("path", event.url);
-              if(event.url == '/' || event.url == '/importancia-metodos-ordenacao') {
+              if(
+                event.url == '/'
+                || event.url == '/importancia-metodos-ordenacao'
+                || event.url == '/definicao-metodos-ordenacao'
+                ) {
                 this.indSemSidebar = true;
                
               } else {

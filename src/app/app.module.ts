@@ -28,10 +28,15 @@ import { AboutSelectionComponent } from './metodo-selection-sort/pages/about-sel
 import { ExerciciosSelectionComponent } from './metodo-selection-sort/pages/exercicios-selection/exercicios-selection.component';
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 import { ImportanciaMetodosOrdenacaoComponent } from './importancia-metodos-ordenacao/importancia-metodos-ordenacao.component';
+import { DefinicaoMetodosOrdenacaoComponent } from './definicao-metodos-ordenacao/definicao-metodos-ordenacao.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+
   { path: 'importancia-metodos-ordenacao', component: ImportanciaMetodosOrdenacaoComponent},
+  { path: 'definicao-metodos-ordenacao', component: DefinicaoMetodosOrdenacaoComponent},
+
+
   { path: 'simulacao-bubble', component: SimulacaoBubbleComponent },
   { path: 'about-bubble-sort', component: AboutBubbleSortComponent},
   { path: 'exercicios-bubble-sort', component: ExerciciosBubbleSortComponent},
@@ -68,6 +73,7 @@ const routes: Routes = [
     HomeComponent,
     FooterComponent,
     ImportanciaMetodosOrdenacaoComponent,
+    DefinicaoMetodosOrdenacaoComponent,
   
   ],
   imports: [

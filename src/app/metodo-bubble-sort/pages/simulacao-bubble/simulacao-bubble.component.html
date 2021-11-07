@@ -220,7 +220,7 @@
 
               <p>
                 <i class="far fa-arrow-alt-circle-right orange"></i> Criar
-                variável "auxiliar".
+                variável "auxiliar".<i class="far fa-question-circle icone_duvidas" (click)="abrirModalVariavelAuxiliar()"></i>
               </p>
   
               <p class="text-sm">
@@ -230,11 +230,11 @@
   
               <div class="tab-space">
                 <p>
-                  1. <strong>Compare</strong> dois elementos adjacentes. <br />
+                  1. <span class="orange">Compare</span> dois elementos adjacentes. <br />
                   2. Se os elementos não estiverem em ordem,
-                  <strong>ordene.</strong><br />
-                  3. Senão, <strong>avance</strong> para o próximo par.<br />
-                  4. <strong>Repita</strong> a operação até que não haja mais
+                  <span class="orange">ordene.</span><br />
+                  3. Senão, <span class="orange">avance</span> para o próximo par.<br />
+                  4. <span class="orange">Repita</span> a operação até que não haja mais
                   trocas a serem feitas.
                 </p>
               </div>
@@ -468,6 +468,71 @@
       </div>
     </div>
   </div>
+
+
+   <!-- modal criar variável auxiliar -->
+
+   <div 
+
+   class="modal fade" 
+
+   bsModal 
+
+   #modalVariavelAuxiliar="bs-modal" 
+
+   tabindex="-1" 
+
+   role="dialog" 
+
+   aria-labelledby="dialog-events-name"
+
+ >
+
+   <div class="modal-dialog modal-md">
+
+     <div class="modal-content">
+       <div class="modal-header">
+         <h4 class="modal-title pull-left">PRA QUÊ VARIÁVEL AUXILIAR?</h4>
+         <button type="button" class="close pull-right" aria-label="Close" (click)="modalVariavelAuxiliar.hide()">
+           <span aria-hidden="true">&times;</span>
+         </button>
+
+       </div>
+
+       <div class="modal-body">
+         <div >
+           <!-- <img src="assets/img/undraw_winners.svg" alt=""> -->
+           <h5 class="text-primary mb-4">Essa variável será útil no momento de trocar os valores de posição dentro da sequência.</h5>
+
+           <p>Uma boa forma de explicar a necessidade de criar uma variável auxiliar, é imaginar que você tem 2 copos com líquidos diferentes. Como você faz para transferir o conteúdo de um copo para o outro, sem misturar os dois e <strong>sem perder as características iniciais de cada conteúdo?</strong></p>
+
+           <p>Você pode usar um terceiro copo, vazio - um copo auxiliar. <br> Nele, você coloca o conteúdo do primeiro copo. Uma vez que o primeiro copo estiver vazio, você coloca o conteúdo do segundo copo nele. Isso fará com que segundo copo fique vazio e você poderá colocar nele o conteúdo do copo auxiliar. E voilà! Troca realizada com sucesso ;)</p>
+
+           <p>
+             <strong>Atenção:</strong> As variáveis não ficam necessariamente vazias. Mas, a partir do momento que se guarda uma cópia do valor de uma variável, se você sobrepor a ela um outro valor, você ainda terá a informação do valor original dela guardada em algum lugar.
+           </p>
+         </div>
+       </div>
+
+ 
+
+       <div class="modal-footer">
+
+         <button type="button" class="btn btn-secondary" (click)="modalVariavelAuxiliar.hide()">
+
+          ENTENDI
+
+         </button>
+
+       </div>
+
+     </div>
+
+   </div>
+
+ </div>
+
+
 
   <!-- modal objetivos -->
   <div id="modal_objetivos" class="modal fade" tabindex="-1">
@@ -706,8 +771,6 @@
     </div>
   </div>
 
-
-
  <!-- modal Vetor Ordenado -->
   <div 
 
@@ -740,7 +803,7 @@
           <div class="modal_vetorOrdenado">
             <img src="assets/img/undraw_winners.svg" alt="">
             <h5>Você ordenou um vetor usando o Bubble Sort!</h5>
-            <p>Que tal tentar agora com o <strong>Selection Sort?</strong></p>
+            <!-- <p>Que tal tentar agora com o <strong>Selection Sort?</strong></p> -->
           </div>
         </div>
 
