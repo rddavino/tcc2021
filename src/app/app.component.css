@@ -2,3 +2,18 @@
     padding: 12px 16px;
 }
 
+
+
+.linksMenuMediumMobile{
+    display: none;
+}
+
+@media screen and (max-width: 1012px){
+    .linksMenuDesktop{
+        display: none;
+    }
+
+    .linksMenuMediumMobile{
+        display: block;
+    }
+}
