@@ -387,6 +387,152 @@
         </div>
         <div class="modal-body">
          <!-- código quick aqui -->
+         <div class="right-sidebar-content code">
+          <ng-container>
+            <span class="blue italic">void </span>
+        <span>quick_sort</span>
+        <span>(</span>
+        <span class="blue italic">int </span>
+        <span>*a</span>
+        
+        <span>,</span>
+        <span class="blue italic"> int </span>
+        <span>esq</span>
+        <span>,</span>
+
+        <span class="blue italic"> int </span>
+        <span>dir</span>
+        <span>) </span>
+          </ng-container>
+          
+          <!-- abre chaves -->
+          <span>&#123; </span> 
+          
+          <div class="vertical-line">
+            <div class="tab-space">
+              <br>
+              <span class="blue italic">int </span>
+              <span>i, j, x, y;</span>
+              <br /><br /> 
+
+              <div>
+                i <span class="red"> = </span> esq;<br />
+                j <span class="red"> = </span> dir;<br />
+                x <span class="red"> = </span> a[(esq <span class="red"> + </span> dir) / <span class="green">2</span>];
+                
+                <br>
+                <br>
+
+              </div>
+
+              <span class="blue italic">while</span>
+              (i <span class="red"> <= </span> j) 
+               <!-- abre chaves -->
+              <span>&#123; </span> 
+
+              <div class="vertical-line">
+                <div class="tab-space">
+                  <!-- WHILE 1 -->
+                  <ng-container>
+                    
+                    <span class="blue italic">while</span>(a[i] <span class="red"> < </span> x && i <span class="red"> < </span> dir) 
+                     <!-- abre chaves -->
+                    <span>&#123; </span> 
+                    <div class="vertical-line">
+                      <div class="tab-space">i<span class="red">++ </span>;</div>
+                    </div>
+
+                     <!-- fechamemto -->
+                     <span>&#125;</span>
+                  </ng-container>
+                  <br> <br>
+
+                  <!-- WHILE 2 -->
+                  <ng-container>
+                    <span class="blue italic">while</span>(a[j] <span class="red"> > </span> x && j <span class="red"> > </span> esq) 
+                     <!-- abre chaves -->
+                    <span>&#123; </span> 
+                    <div class="vertical-line">
+                      <div class="tab-space">j<span class="red">-- </span>;</div>
+                    </div>
+
+                     <!-- fechamemto -->
+                     <span>&#125;</span>
+                  </ng-container>
+
+                  <br><br>  
+                  <ng-container>
+                    <span class="blue italic">if</span>
+                    (i <span class="red"> <= </span> j)
+                     <!-- abre chaves -->
+                     <span>&#123; </span> 
+                     <div class="vertical-line">
+                       <div class="tab-space">
+
+                          y <span class="red"> = </span> a[i]; <br>
+                          a[i] <span class="red"> = </span> a[j];<br>
+                          a[j] <span class="red"> = </span> y;<br>
+                          i<span class="red">++</span>;<br>
+                          j<span class="red">--</span>;<br>
+
+                       </div>
+                      </div>
+                      <!-- fechamemto -->
+                     <span>&#125;</span>
+                  </ng-container>
+                  
+
+                  
+                </div>
+              </div>
+              <!-- fechamemto -->
+              <span>&#125;</span>
+              
+              <!-- if 1 -->
+              <div class="tab_space">
+                <span class="blue italic">if</span>
+                (j <span class="red"> > </span> esq)
+                <!-- abre chaves -->
+                <span>&#123; </span> 
+
+           
+
+                <div class="vertical-line">
+                  <div class="tab-space">
+                    quick_sort(a, esq, j);
+                  </div>
+                </div>
+                 <!-- fechamemto -->
+                <span>&#125;</span>
+              </div>
+
+              <!-- if 2 -->
+              <div class="tab_space">
+                <span class="blue italic">if</span>
+                (j <span class="red"> < </span> dir)
+                <!-- abre chaves -->
+                <span>&#123; </span> 
+
+           
+
+                <div class="vertical-line">
+                  <div class="tab-space">
+                    quick_sort(a, i, dir);
+                  </div>
+                </div>
+                 <!-- fechamemto -->
+                <span>&#125;</span>
+              </div>
+              
+
+
+            </div>
+          </div>
+          <!-- fechamemto -->
+          <span>&#125;</span>
+          
+          
+        </div>
         </div>
         <div class="modal-footer">
           <button
