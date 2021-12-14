@@ -12,18 +12,35 @@
       <div>
         <div class="content-component-descricao">
           <p>
-            O selection sort consiste em colocar o menor item do vetor na primeira posição; depois, colocar o segundo menor na segunda posição, e assim sucessivamente. Não é um algoritmo muito estável e possui uma complexidade de O(n²) em todos os casos. Um algoritmo de ordenação é considerado estável se a ordem dos registros de chaves iguais é preservada.
+            Este algoritmo é chamado ordenação por seleção, porque ela seleciona repetidamente o próximo elemento menor e troca-o pelo elemento na posição correta.
+          </p>
+          <p>Para ordenar segundo o Selection Sort, é preciso seguir os passos:</p>
+          <p>
+            1. Encontre o menor elemento. Troque-o com o primeiro elemento<br>
+            2. Encontre o segundo menor elemento. Troque-o com o segundo elemento<br>
+            3. Encontre o terceiro menor elemento. Troque-o com o terceiro elemento<br>
+            4. Repita encontrando o próximo menor elemento e coloque-o na posição correta até que a sequência esteja ordenada.
           </p>
           <p>
-            <em>Área em construção...</em>
+            Uma das etapas na ordenação por seleção é encontrar e colocar a próxima menor carta em sua posição correta. Por exemplo, se o array inicialmente tiver os valores [13, 19, 18, 4, 10], precisamos primeiro encontrar o índice do menor valor no array. Como 4 é o menor valor, o índice do menor valor é 3.
           </p>
+
+          <p>
+            A ordenação por seleção troca o valor no índice 3 pelo valor no índice 0, obtendo [4, 19, 18, 13, 10]. Agora precisamos encontrar o índice do segundo menor valor para colocá-lo no índice 1.
+          </p>
+
+          <p>
+            Pode ser complicado escrever o código que encontra o índice do segundo menor valor do array. Tenho certeza que você pode fazer isso, mas há um modo melhor. Note que já que o menor valor já foi colocado no índice 0, o que queremos realmente é encontrar o menor valor na parte do array que começa no índice 1. Chamamos uma seção de um array de subarray, então nesse caso, queremos o índice do menor valor no subarray que começa no índice 1. Em nosso exemplo, o array completo é [4, 19, 18, 13, 10], então o menor valor no subarray que começa no índice 1 é 10, que tem o índice 4 no array original. Então, o índice 4 é a posição do segundo menor elemento do array completo.
+          </p>
+
+          <small>Fonte: https://pt.khanacademy.org/computing/computer-science/algorithms/sorting-algorithms/a/selection-sort-pseudocode</small>
          
         </div>
       </div>
     </div>
   </div>
 
-  <div class="d-flex">
+  <div class="d-flex mt-3">
     <a routerLink="../simulacao-selection" class="text-primary mr-4"
       ><i class="fas fa-arrow-right text-primary"></i> Ir para
       simulação</a
